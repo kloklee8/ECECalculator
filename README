@@ -1,1 +1,27 @@
+ECE 2524 Final Project: ECE Calculator
+Patrick To
+Justin Boblitt
+Chris Flatley
+Mark McNamee
+
 The purpose of the ECE Calculator is to provide a useful tool for analyzing circuits. It will consist of a standard calculator with options to convert between common units and prefixes used in ECE. The calculator will be able to evaluate boolean expressions. Also available will be common formulas used in ECE, such as Ohm's Law, Equivalent Series/Parallel combination, Capacitors and Inductors, etc.
+
+Each of the following operations will have its own header/cpp file
+*Scientific calculator
+    +, -, *, /, modulus, exponents, roots, log, sin/cos/trig, etc.
+*local memory and global memory8
+*conversions between prefixes and units
+*RLC equivalent calculators
+*Ohm's Law, voltage/current division, power, other common ECE functions
+*Basic op-amp circuits (summing, difference, inverting, differential, integrating, etc.) formulas and diagrams
+*RLC circuits - differential equations calculator
+
+Need to create a tree to store operations
+Have settings such as display precision
+
+Main program operation:
+    Display brief instructions
+    Ask user for which operation they would like to perform
+    User enters data for the operation
+    Display results
+    Loop back to top
