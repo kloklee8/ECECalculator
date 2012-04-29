@@ -76,8 +76,6 @@ void menu(MODE& currentMode, SUB_MODE& currentSubMode)
 		{
 			currentMode = EQ_COMPONENT;
 			submenu(currentMode, currentSubMode);
-                        if (currentSubMode != NONE)
-                                cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
 			break;
 		}
         default:
@@ -92,7 +90,7 @@ void submenu(MODE& currentMode, SUB_MODE& currentSubMode)
 	    << "1. Resistance" << endl
 	    << "2. Capacitance" << endl
 	    << "3. Inductance" << endl
-        << "9. Help" << endl
+            << "9. Help" << endl
 	    << "0. Exit" << endl;
     getline(cin, subChoice);
     switch(subChoice[0] - '0')
@@ -109,10 +107,11 @@ void submenu(MODE& currentMode, SUB_MODE& currentSubMode)
         case 9:
             currentSubMode = NONE;
             cout << Help::getHelp(currentMode, currentSubMode);
-            break;
+            return;
         default:
 	        currentSubMode = NONE;
     }
+    cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
 }
 
 void sci_calculator(SciCalcParser& calcParser, MODE& currentMode)
@@ -135,7 +134,12 @@ void sci_calculator(SciCalcParser& calcParser, MODE& currentMode)
 
 void equivalent_component(EquivResParser& resistanceParser, MODE& currentMode, SUB_MODE& currentSubMode)
 {
-    //Depending on the sub mode, perform calculations.  Can't remember how to do this.
+    if (currentSubMode == NONE)
+    {
+        submenu(currentMode, currentSubMode);
+        return;
+    }
+    //Depending on the sub mode, perform calculations.
     string exp;
     getline(cin, exp);
       
