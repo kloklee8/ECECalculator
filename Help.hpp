@@ -14,7 +14,7 @@ using std::string;
 class Help
 {
 public:
-    string getHelp(MODE mode, SUB_MODE submode);
+    static string getHelp(MODE mode, SUB_MODE submode);
 };
 
 #endif
