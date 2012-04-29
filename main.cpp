@@ -76,8 +76,8 @@ void menu(MODE& currentMode, SUB_MODE& currentSubMode)
 		{
 			currentMode = EQ_COMPONENT;
 			submenu(currentMode, currentSubMode);
-                        if (currentSubMode != NONE)
-                                cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
+                    if (currentSubMode != NONE)
+                            cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
 			break;
 		}
         default:
