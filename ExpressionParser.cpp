@@ -1,9 +1,16 @@
 #include "ExpressionParser.hpp"
 #include "Exceptions.hpp"
 
+ExpressionParser::ExpressionParser() 
+{
+    infix = "";
+    prevAnswer = "";
+}
+
 ExpressionParser::ExpressionParser(string exp_infix)
 {
     infix = exp_infix;
+    prevAnswer = "";
 }
 
 string ExpressionParser::convertToPostfix()
@@ -59,11 +66,22 @@ string ExpressionParser::convertToPostfix()
     return postfix;
 }
 
-string ExpressionParser::evaluatePostFix()
+void ExpressionParser::setExpression(string exp)
+{
+    infix = exp;
+    emptyExpressionQueue();
+    convertToPostfix();
+}
+
+string ExpressionParser::evaluateExpression()
 {
     if (expression.size() == 0)
     {
-        return "";
+        if (infix == "")
+        {
+            return "";
+        }
+        convertToPostfix();
     }
 
     stack<exp_element> operands;
@@ -208,4 +226,14 @@ void ExpressionParser::processParen(const char current, stack<exp_element>& oper
             }
         }
     }
+}
+
+void ExpressionParser::emptyExpressionQueue()
+{
+    expression.erase(expression.begin(), expression.end());
+    /*
+    while (!expression.empty())
+    {
+        expression.pop_front();
+    }*/
 }

@@ -28,10 +28,13 @@ struct exp_element
 class ExpressionParser
 {
     public:
+        ExpressionParser();
         ExpressionParser(string infix);
-        virtual string convertToPostfix();
-        virtual string evaluatePostFix();
+        
         exp_element newElement(const DATA_TYPE type, const string data);
+        
+        string evaluateExpression();
+        void setExpression(string exp);
 
         // abstract functions
         virtual bool isOperand(const char op) = 0;
@@ -45,7 +48,12 @@ class ExpressionParser
 
     private:
         string infix;
+        string prevAnswer;
         deque<exp_element> expression;
+        
+        string convertToPostfix();
+        
+        void emptyExpressionQueue();
         
         void processOperand(const char current, string& infix, string::iterator it, string& curBuffer);
         void processOperator(const char current, stack<exp_element>& operators);
