@@ -20,7 +20,7 @@ using std::getline;
 void menu(MODE& currentMode, SUB_MODE& currentSubMode);
 void submenu(MODE& currentMode, SUB_MODE& currentSubMode);
 void sci_calculator(MODE& currentMode);
-void equivalent_component(MODE& currentMode);
+void equivalent_component(MODE& currentMode, SUB_MODE& currentSubMode);
 
 int main()
 {
@@ -38,7 +38,7 @@ int main()
                 sci_calculator(currentMode);
                 break;
             case EQ_COMPONENT:
-                equivalent_component(currentMode);
+                equivalent_component(currentMode, currentSubMode);
                 break;
             case EXIT:
                 break;
@@ -74,7 +74,8 @@ void menu(MODE& currentMode, SUB_MODE& currentSubMode)
 		{
 			currentMode = EQ_COMPONENT;
 			submenu(currentMode, currentSubMode);
-	        cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
+                        if (currentSubMode != NONE)
+                                cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
 			break;
 		}
         default:
@@ -104,7 +105,8 @@ void submenu(MODE& currentMode, SUB_MODE& currentSubMode)
 	        currentSubMode = INDUCTANCE;
 	        break;
         case 9:
-                Help::getHelp(currentMode, currentSubMode);
+                currentSubMode = NONE;
+                cout << Help::getHelp(currentMode, currentSubMode);
                 break;
         default:
 	        currentSubMode = NONE;
@@ -130,7 +132,7 @@ void sci_calculator(MODE& currentMode)
     }
 }
 
-void equivalent_component(MODE& currentMode)
+void equivalent_component(MODE& currentMode, SUB_MODE& currentSubMode)
 {
     //Depending on the sub mode, perform calculations.  Can't remember how to do this.
     string exp;
@@ -140,7 +142,19 @@ void equivalent_component(MODE& currentMode)
 
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
-        cout << resistanceParser.evaluateExpression() << "ohms" << endl;
+        cout << resistanceParser.evaluateExpression();
+        switch (currentSubMode)
+        {
+            case RESISTANCE:
+                cout << " ohms"  << endl;
+                break;
+            case CAPACITANCE:
+                cout << " F"  << endl;
+                break;
+            case INDUCTANCE:
+                cout << " H" << endl;
+                break;
+        }
     }
     else
     {
