@@ -138,9 +138,8 @@ void equivalent_component(MODE& currentMode)
 
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
-        //cout << calcParser.convertToPostfix(exp) << endl;
         resistanceParser.convertToPostfix();
-        cout << resistanceParser.evaluatePostFix() << endl;
+        cout << resistanceParser.evaluatePostFix() << "ohms" << endl;
     }
     else
     {
