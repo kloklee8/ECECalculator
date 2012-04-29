@@ -13,8 +13,8 @@ using std::string;
  */
 class Help
 {
-public:
-    static string getHelp(MODE mode, SUB_MODE submode);
+    public:
+        static string getHelp(MODE mode, SUB_MODE submode);
 };
 
 #endif

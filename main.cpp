@@ -9,6 +9,7 @@
 #include "EquivCapParser.hpp"
 #include "EquivIndParser.hpp"
 #include "enum.hpp"
+#include "Help.hpp"
 
 using std::string;
 using std::cout;
@@ -53,13 +54,14 @@ void menu(MODE& currentMode, SUB_MODE& currentSubMode)
     string choice; // using string instead of int to prevent whitespace issues with other parts of the program
     cout << "1. Scientific Calculator" << endl <<
             "2. Circuit Component Equivalence" << endl <<
-            "-1. Help" << endl <<
+            "9. Help" << endl <<
             "0. Exit" << endl;
     getline(cin, choice);
 
     switch (choice[0] - '0')
     {
-        case -1:
+        case 9:
+            cout << Help::getHelp(currentMode, currentSubMode);
             break;
         case 0:
             currentMode = EXIT;
