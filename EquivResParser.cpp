@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <cmath>
-#include "EquivResParser.h"
+#include "EquivResParser.hpp"
 
 exp_element EquivResParser::executeOperator(const exp_element op, const exp_element leftOp, const exp_element rightOp)
 {

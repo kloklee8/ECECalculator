@@ -5,9 +5,9 @@
 #include <string>
 #include "ExpressionParser.hpp"
 #include "SciCalcParser.hpp"
-#include "EquivResParser.h"
-#include "EquivCapParser.h"
-#include "EquivIndParser.h"
+#include "EquivResParser.hpp"
+#include "EquivCapParser.hpp"
+#include "EquivIndParser.hpp"
 
 using std::string;
 using std::cout;

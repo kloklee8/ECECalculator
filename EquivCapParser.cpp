@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <cmath>
-#include "EquivCapParser.h"
+#include "EquivCapParser.hpp"
 
 exp_element EquivCapParser::executeOperator(const exp_element op, const exp_element leftOp, const exp_element rightOp)
 {

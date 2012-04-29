@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <cmath>
-#include "EquivComponentParser.h"
+#include "EquivComponentParser.hpp"
 
 char EquivComponentParser::validOps[NUMEQOPS] = {'+', '|'};
 //char EqResParser::validFuncts[NUMEQFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
