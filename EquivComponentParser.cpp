@@ -3,6 +3,11 @@
 #include <cmath>
 #include "EquivComponentParser.hpp"
 
+EquivComponentParser::EquivComponentParser(string infix) : ExpressionParser(infix)
+{
+
+}
+
 char EquivComponentParser::validOps[NUMEQOPS] = {'+', '|'};
 //char EqResParser::validFuncts[NUMEQFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
 //string EqResParser::validFunctWords[NUMEQFUNCTS] = {"sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};

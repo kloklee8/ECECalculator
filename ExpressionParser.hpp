@@ -28,7 +28,8 @@ struct exp_element
 class ExpressionParser
 {
     public:
-        virtual string convertToPostfix(string infix);
+        ExpressionParser(string infix);
+        virtual string convertToPostfix();
         virtual string evaluatePostFix();
         exp_element newElement(const DATA_TYPE type, const string data);
 
@@ -43,6 +44,7 @@ class ExpressionParser
         virtual string convertFuncsToChar(string infix) = 0;
 
     private:
+        string infix;
         deque<exp_element> expression;
         
         void processOperand(const char current, string& infix, string::iterator it, string& curBuffer);

@@ -3,6 +3,11 @@
 #include <cmath>
 #include "EquivCapParser.hpp"
 
+EquivCapParser::EquivCapParser(string infix) : EquivComponentParser(infix)
+{
+
+}
+
 exp_element EquivCapParser::executeOperator(const exp_element op, const exp_element leftOp, const exp_element rightOp)
 {
 	//Check if the operator is valid

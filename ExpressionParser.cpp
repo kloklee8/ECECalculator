@@ -1,9 +1,14 @@
 #include "ExpressionParser.hpp"
 #include "Exceptions.hpp"
 
-string ExpressionParser::convertToPostfix(string origInfix)
+ExpressionParser::ExpressionParser(string exp_infix)
 {
-    string infix = convertFuncsToChar(origInfix);
+    infix = exp_infix;
+}
+
+string ExpressionParser::convertToPostfix()
+{
+    infix = convertFuncsToChar(infix);
 
     stack<exp_element> operators;
     string operandBuffer = "";

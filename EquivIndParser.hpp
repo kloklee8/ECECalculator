@@ -5,7 +5,8 @@
 class EquivIndParser : public EquivComponentParser
 {
 public:
-	exp_element executeOperator(const exp_element op, const exp_element leftOp, const exp_element rightOp);
+    EquivIndParser(string infix);
+    exp_element executeOperator(const exp_element op, const exp_element leftOp, const exp_element rightOp);
 };
 
 #endif

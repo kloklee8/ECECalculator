@@ -13,6 +13,7 @@ using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
+using std::getline;
 
 enum MODE
 {
@@ -122,15 +123,15 @@ void submenu()
 
 void sci_calculator()
 {
-    SciCalcParser calcParser;
-
     string exp;
     getline(cin, exp);
+    
+    SciCalcParser calcParser(exp);
 
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
         //cout << calcParser.convertToPostfix(exp) << endl;
-        calcParser.convertToPostfix(exp);
+        calcParser.convertToPostfix();
         cout << calcParser.evaluatePostFix() << endl;
     }
     else
@@ -143,14 +144,16 @@ void sci_calculator()
 void equivalent_component()
 {
     //Depending on the sub mode, perform calculations.  Can't remember how to do this.
-	EquivResParser resistanceParser;
+	
 	string exp;
     getline(cin, exp);
+    
+    EquivResParser resistanceParser(exp);
 
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
         //cout << calcParser.convertToPostfix(exp) << endl;
-        resistanceParser.convertToPostfix(exp);
+        resistanceParser.convertToPostfix();
         cout << resistanceParser.evaluatePostFix() << endl;
     }
     else

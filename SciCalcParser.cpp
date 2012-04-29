@@ -7,6 +7,11 @@ char SciCalcParser::validOps[NUMSCIOPS] = {'+', '-', '*', '/', '%', '^'};
 char SciCalcParser::validFuncts[NUMSCIFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
 string SciCalcParser::validFunctWords[NUMSCIFUNCTS] = {"sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};
 
+SciCalcParser::SciCalcParser(string infix) : ExpressionParser(infix)
+{
+
+}
+
 bool SciCalcParser::isOperand(const char op)
 {
     return (((op >= '0') && (op <= '9')) || op == '.');

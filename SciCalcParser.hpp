@@ -8,6 +8,7 @@
 class SciCalcParser : public ExpressionParser
 {
     public:
+        SciCalcParser(string infix);
         bool isOperand(const char op);
         bool isOperator(const char op); 
         bool isFunction(const char op);
