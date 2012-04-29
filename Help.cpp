@@ -21,19 +21,19 @@ string Help::getHelp(MODE mode, SUB_MODE submode)
 
 //Return help corresponding to the menu screen and how to use the entire 
 //calculator.
-void getMenuHelp(string& help)
+void Help::getMenuHelp(string& help)
 {
     help += "Menu help:";
 }
 
 //Return help corresponding to the scientific calculator mode.
-void getSciHelp(string& help)
+void Help::getSciHelp(string& help)
 {
     help += "Scientific Calculator help:";
 }
 
 //Return help corresponding to the equivalence component mode.
-void getEquivHelp(string& help, SUB_MODE submode)
+void Help::getEquivHelp(string& help, SUB_MODE submode)
 {
     switch (submode) 
     {
