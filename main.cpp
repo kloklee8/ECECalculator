@@ -18,7 +18,7 @@ using std::endl;
 using std::getline;
 
 void menu(MODE& currentMode, SUB_MODE& currentSubMode);
-void submenu(SUB_MODE& currentSubMode);
+void submenu(MODE& currentMode, SUB_MODE& currentSubMode);
 void sci_calculator(MODE& currentMode);
 void equivalent_component(MODE& currentMode);
 
@@ -73,7 +73,7 @@ void menu(MODE& currentMode, SUB_MODE& currentSubMode)
         case 2:
 		{
 			currentMode = EQ_COMPONENT;
-			submenu(currentSubMode);
+			submenu(currentMode, currentSubMode);
 	        cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
 			break;
 		}
@@ -82,13 +82,14 @@ void menu(MODE& currentMode, SUB_MODE& currentSubMode)
     }
 }
 
-void submenu(SUB_MODE& currentSubMode)
+void submenu(MODE& currentMode, SUB_MODE& currentSubMode)
 {
 	string subChoice; // using string instead of int to prevent whitespace issues with other parts of the program
     cout << "What would you like to find the equivalence of?." <<  endl
 	    << "1. Resistance" << endl
 	    << "2. Capacitance" << endl
 	    << "3. Inductance" << endl
+            << "9. Help" << endl
 	    << "0. Exit" << endl;
     getline(cin, subChoice);
     switch(subChoice[0] - '0')
@@ -102,6 +103,9 @@ void submenu(SUB_MODE& currentSubMode)
         case 3:
 	        currentSubMode = INDUCTANCE;
 	        break;
+        case 9:
+                Help::getHelp(currentMode, currentSubMode);
+                break;
         default:
 	        currentSubMode = NONE;
     }
@@ -129,8 +133,7 @@ void sci_calculator(MODE& currentMode)
 void equivalent_component(MODE& currentMode)
 {
     //Depending on the sub mode, perform calculations.  Can't remember how to do this.
-	
-	string exp;
+    string exp;
     getline(cin, exp);
     
     EquivResParser resistanceParser(exp);

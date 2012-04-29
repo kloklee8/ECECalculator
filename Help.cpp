@@ -15,7 +15,7 @@ string Help::getHelp(MODE mode, SUB_MODE submode)
             getEquivHelp(help, submode);
             break;
     }
-    
+    help += "\n";
     return help;
 }
 
@@ -44,10 +44,19 @@ void Help::getEquivHelp(string& help, SUB_MODE submode)
             help += "Equivalent Capacitance help:";
             break;
         case INDUCTANCE:
-            help += "Equivalent Inductance help:";
+            help += "Equivalent Component help: \nThis mode is used to" 
+                    " determine the equivalence of multiple inductor components"
+                    " that are in series or parallel.  For example, if "
+                    " inductor 1 (1mH)is in series with the parallel combination of"
+                    " inductor 2 (2mH) and 3 (3mH), the following syntax can be user:\n"
+                    " ";
             break;
         case NONE:
-            help += "Equivalent Component help:";
+            help += "Equivalent Component help: \nThis mode is used to" 
+                    " determine the equivalence of multiple circuit components"
+                    " that are in series or parallel.  For example, you may " 
+                    " want to know the equivalence of five resistors in that" 
+                    " are in a complex parallel and series network.";
             break;
     }
 }
