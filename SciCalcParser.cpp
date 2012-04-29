@@ -3,9 +3,9 @@
 #include <cmath>
 #include "SciCalcParser.hpp"
 
-char SciCalcParser::validOps[NUMOPS] = {'+', '-', '*', '/', '%', '^'};
-char SciCalcParser::validFuncts[NUMFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
-string SciCalcParser::validFunctWords[NUMFUNCTS] = {"sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};
+char SciCalcParser::validOps[NUMSCIOPS] = {'+', '-', '*', '/', '%', '^'};
+char SciCalcParser::validFuncts[NUMSCIFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
+string SciCalcParser::validFunctWords[NUMSCIFUNCTS] = {"sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};
 
 bool SciCalcParser::isOperand(const char op)
 {
@@ -14,7 +14,7 @@ bool SciCalcParser::isOperand(const char op)
 
 bool SciCalcParser::isOperator(const char op)
 {
-    for (int i = 0; i < NUMOPS; i++)
+    for (int i = 0; i < NUMSCIOPS; i++)
     {
         if (op == validOps[i])
         {
@@ -26,7 +26,7 @@ bool SciCalcParser::isOperator(const char op)
 
 bool SciCalcParser::isFunction(const char func)
 {
-    for (int i = 0; i < NUMFUNCTS; i++)
+    for (int i = 0; i < NUMSCIFUNCTS; i++)
     {
         if (func == validFuncts[i])
         {
@@ -175,7 +175,7 @@ exp_element SciCalcParser::executeFunction(const exp_element funct, const exp_el
 
 string SciCalcParser::convertFuncsToChar(string infix)
 {
-    for (int i = 0; i < NUMFUNCTS; i++)
+    for (int i = 0; i < NUMSCIFUNCTS; i++)
     {
         while (infix.find(validFunctWords[i]) != string::npos)
         {

@@ -2,8 +2,8 @@
 #define SCICALCPARSER_H
 #include "ExpressionParser.hpp"
 
-#define NUMOPS 6
-#define NUMFUNCTS 11
+#define NUMSCIOPS 6
+#define NUMSCIFUNCTS 11
 
 class SciCalcParser : public ExpressionParser
 {
@@ -18,9 +18,9 @@ class SciCalcParser : public ExpressionParser
         string convertFuncsToChar(string infix);
 
     private:
-        static char validOps[NUMOPS];
-        static char validFuncts[NUMFUNCTS];
-        static string validFunctWords[NUMFUNCTS];
+        static char validOps[NUMSCIOPS];
+        static char validFuncts[NUMSCIFUNCTS];
+        static string validFunctWords[NUMSCIFUNCTS];
 
         int factorial(int op);
 };

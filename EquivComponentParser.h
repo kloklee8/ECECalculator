@@ -1,9 +1,9 @@
 #ifndef EQUIVCOMPONENTPARSER_H
 #define EQUIVCOMPONENTPARSER_H
-#include "ExpressionParser.h"
+#include "ExpressionParser.hpp"
 
-#define NUMOPS 2
-#define NUMFUNCTS 0
+#define NUMEQOPS 2
+#define NUMEQFUNCTS 0
 
 class EquivComponentParser : public ExpressionParser
 {
@@ -12,7 +12,7 @@ class EquivComponentParser : public ExpressionParser
         bool isOperator(const char op); 
         bool isFunction(const char op);
         bool isLeftAssociative(const char op);
-        int precedence(const char op);
+        int precedenceOf(const char op);
 
 		//Make three different 
         virtual exp_element executeOperator(const exp_element op, const exp_element leftOp, const exp_element rightOp);
@@ -20,9 +20,9 @@ class EquivComponentParser : public ExpressionParser
         string convertFuncsToChar(string infix);
 
     private:
-        static char validOps[NUMOPS];
-        //static char validFuncts[NUMFUNCTS];
-        //static string validFunctWords[NUMFUNCTS];
+        static char validOps[NUMEQOPS];
+        //static char validFuncts[NUMEQFUNCTS];
+        //static string validFunctWords[NUMEQFUNCTS];
 };
 
 #endif

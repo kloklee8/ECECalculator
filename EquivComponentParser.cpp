@@ -3,9 +3,9 @@
 #include <cmath>
 #include "EquivComponentParser.h"
 
-char EquivComponentParser::validOps[NUMOPS] = {'+', '|'};
-//char EqResParser::validFuncts[NUMFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
-//string EqResParser::validFunctWords[NUMFUNCTS] = {"sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};
+char EquivComponentParser::validOps[NUMEQOPS] = {'+', '|'};
+//char EqResParser::validFuncts[NUMEQFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
+//string EqResParser::validFunctWords[NUMEQFUNCTS] = {"sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};
 
 /*
  * Operands include any floating point numbers and integers.
@@ -20,7 +20,7 @@ bool EquivComponentParser::isOperand(const char op)
  */
 bool EquivComponentParser::isOperator(const char op)
 {
-    for (int i = 0; i < NUMOPS; i++)
+    for (int i = 0; i < NUMEQOPS; i++)
     {
         if (op == validOps[i])
         {
@@ -36,7 +36,7 @@ bool EquivComponentParser::isOperator(const char op)
  */
 bool EquivComponentParser::isFunction(const char func)
 {
-    /*for (int i = 0; i < NUMFUNCTS; i++)
+    /*for (int i = 0; i < NUMEQFUNCTS; i++)
     {
         if (func == validFuncts[i])
         {
@@ -50,7 +50,7 @@ bool EquivComponentParser::isFunction(const char func)
  * Higher numbers are higher precedence.  In this case 
  * we want to perform all parallel calculations before series.
  */
-int EquivComponentParser::precedence(const char op)
+int EquivComponentParser::precedenceOf(const char op)
 { 
     switch (op)
     {
@@ -173,7 +173,7 @@ exp_element EquivComponentParser::executeFunction(const exp_element funct, const
 
 string EquivComponentParser::convertFuncsToChar(string infix)
 {
-    /*for (int i = 0; i < NUMFUNCTS; i++)
+    /*for (int i = 0; i < NUMEQFUNCTS; i++)
     {
         while (infix.find(validFunctWords[i]) != string::npos)
         {
