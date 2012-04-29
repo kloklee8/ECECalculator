@@ -1,12 +1,13 @@
 #include "Help.hpp"
 
-string getHelp(MODE mode, SUB_MODE submode)
+string Help::getHelp(MODE mode, SUB_MODE submode)
 {
     string help = "";
     switch (mode)
     {
         case MENU:
             help += "Menu help:";
+            break;
         case SCI_CALC:
             help += "Scientific Calculator help:";
             break;
