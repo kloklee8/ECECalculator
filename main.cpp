@@ -8,6 +8,7 @@
 #include "EquivResParser.hpp"
 #include "EquivCapParser.hpp"
 #include "EquivIndParser.hpp"
+#include "enum.hpp"
 
 using std::string;
 using std::cout;
@@ -15,45 +16,28 @@ using std::cin;
 using std::endl;
 using std::getline;
 
-enum MODE
-{
-    MENU,
-    SCI_CALC,
-	EQ_COMPONENT,
-    EXIT
-} currentMode;
-
-//Modes that make up a MODE.  Put all sub-modes here, no matter which mode your in.
-//Temporary solution.  - Justin
-enum SUB_MODE
-{
-    RESISTANCE,
-	CAPACITANCE,
-	INDUCTANCE
-} currentSubMode;
-
-void menu();
-void submenu();
-void sci_calculator();
-void equivalent_component();
+void menu(MODE& currentMode, SUB_MODE& currentSubMode);
+void submenu(SUB_MODE& currentSubMode);
+void sci_calculator(MODE& currentMode);
+void equivalent_component(MODE& currentMode);
 
 int main()
 {
-    currentMode = MENU;
-    currentSubMode = RESISTANCE;
+    MODE currentMode = MENU;
+    SUB_MODE currentSubMode = RESISTANCE;
 
     while (currentMode != EXIT)
     {
         switch (currentMode)
         {
             case MENU:
-                menu();
+                menu(currentMode, currentSubMode);
                 break;
             case SCI_CALC:
-                sci_calculator();
+                sci_calculator(currentMode);
                 break;
             case EQ_COMPONENT:
-                equivalent_component();
+                equivalent_component(currentMode);
                 break;
             case EXIT:
                 break;
@@ -64,7 +48,7 @@ int main()
 }
 
 
-void menu()
+void menu(MODE& currentMode, SUB_MODE& currentSubMode)
 {
     string choice; // using string instead of int to prevent whitespace issues with other parts of the program
     cout << "1. Scientific Calculator" << endl <<
@@ -87,7 +71,7 @@ void menu()
         case 2:
 		{
 			currentMode = EQ_COMPONENT;
-			submenu();
+			submenu(currentSubMode);
 	        cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
 			break;
 		}
@@ -96,7 +80,7 @@ void menu()
     }
 }
 
-void submenu()
+void submenu(SUB_MODE& currentSubMode)
 {
 	string subChoice; // using string instead of int to prevent whitespace issues with other parts of the program
     cout << "What would you like to find the equivalence of?." <<  endl
@@ -117,11 +101,11 @@ void submenu()
 	        currentSubMode = INDUCTANCE;
 	        break;
         default:
-	        currentMode = MENU;
+	        currentSubMode = NONE;
     }
 }
 
-void sci_calculator()
+void sci_calculator(MODE& currentMode)
 {
     string exp;
     getline(cin, exp);
@@ -141,7 +125,7 @@ void sci_calculator()
     }
 }
 
-void equivalent_component()
+void equivalent_component(MODE& currentMode)
 {
     //Depending on the sub mode, perform calculations.  Can't remember how to do this.
 	

@@ -16,6 +16,7 @@ enum MODE
 //no matter which mode your in.
 enum SUB_MODE
 {
+    NONE,
     RESISTANCE,
     CAPACITANCE,
     INDUCTANCE
