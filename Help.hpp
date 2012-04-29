@@ -16,9 +16,9 @@ class Help
 public:
     static string getHelp(MODE mode, SUB_MODE submode);
 private:
-    void getMenuHelp(string&);
-    void getSciHelp(string&);
-    void getEquivHelp(string&, SUB_MODE submode);
+    static void getMenuHelp(string&);
+    static void getSciHelp(string&);
+    static void getEquivHelp(string&, SUB_MODE submode);
 };
 
 #endif
