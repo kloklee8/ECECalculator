@@ -1,5 +1,7 @@
+#include <cstdlib>
 #include "ExpressionParser.hpp"
 #include "Exceptions.hpp"
+
 
 ExpressionParser::ExpressionParser() 
 {
@@ -16,6 +18,7 @@ ExpressionParser::ExpressionParser(string exp_infix)
 string ExpressionParser::convertToPostfix()
 {
     infix = convertFuncsToChar(infix);
+    replaceWithPrevAnswer();
 
     stack<exp_element> operators;
     string operandBuffer = "";
@@ -64,6 +67,14 @@ string ExpressionParser::convertToPostfix()
     }
 
     return postfix;
+}
+
+void ExpressionParser::replaceWithPrevAnswer()
+{
+    while (infix.find("#") != string::npos)
+    {
+        infix.replace(infix.find("#"), 1, prevAnswer);
+    }
 }
 
 void ExpressionParser::setExpression(string exp)
@@ -130,7 +141,8 @@ string ExpressionParser::evaluateExpression()
     
     exp_element finalValue = operands.top();
     operands.pop();
-
+    
+    prevAnswer = finalValue.data;
     return finalValue.data;
 }
 
@@ -231,9 +243,4 @@ void ExpressionParser::processParen(const char current, stack<exp_element>& oper
 void ExpressionParser::emptyExpressionQueue()
 {
     expression.erase(expression.begin(), expression.end());
-    /*
-    while (!expression.empty())
-    {
-        expression.pop_front();
-    }*/
 }

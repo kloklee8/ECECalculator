@@ -19,13 +19,15 @@ using std::getline;
 
 void menu(MODE& currentMode, SUB_MODE& currentSubMode);
 void submenu(MODE& currentMode, SUB_MODE& currentSubMode);
-void sci_calculator(MODE& currentMode);
-void equivalent_component(MODE& currentMode);
+void sci_calculator(SciCalcParser& calcParse, MODE& currentMode);
+void equivalent_component(EquivResParser& resistParser, MODE& currentMode);
 
 int main()
 {
     MODE currentMode = MENU;
     SUB_MODE currentSubMode = RESISTANCE;
+    SciCalcParser calcParser;
+    EquivResParser resistanceParser;
 
     while (currentMode != EXIT)
     {
@@ -35,10 +37,10 @@ int main()
                 menu(currentMode, currentSubMode);
                 break;
             case SCI_CALC:
-                sci_calculator(currentMode);
+                sci_calculator(calcParser, currentMode);
                 break;
             case EQ_COMPONENT:
-                equivalent_component(currentMode);
+                equivalent_component(resistanceParser, currentMode);
                 break;
             case EXIT:
                 break;
@@ -111,12 +113,12 @@ void submenu(MODE& currentMode, SUB_MODE& currentSubMode)
     }
 }
 
-void sci_calculator(MODE& currentMode)
+void sci_calculator(SciCalcParser& calcParser, MODE& currentMode)
 {
     string exp;
     getline(cin, exp);
     
-    SciCalcParser calcParser(exp);
+    calcParser.setExpression(exp);
 
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
@@ -130,14 +132,14 @@ void sci_calculator(MODE& currentMode)
     }
 }
 
-void equivalent_component(MODE& currentMode)
+void equivalent_component(EquivResParser& resistanceParser, MODE& currentMode)
 {
     //Depending on the sub mode, perform calculations.  Can't remember how to do this.
     string exp;
     getline(cin, exp);
     
-    EquivResParser resistanceParser(exp);
-
+    resistanceParser.setExpression(exp);
+   
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
         cout << resistanceParser.evaluateExpression() << "ohms" << endl;

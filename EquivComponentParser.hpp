@@ -8,6 +8,7 @@
 class EquivComponentParser : public ExpressionParser
 {
     public:
+        EquivComponentParser();
         EquivComponentParser(string infix);
         bool isOperand(const char op);
         bool isOperator(const char op); 

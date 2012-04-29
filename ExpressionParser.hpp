@@ -52,6 +52,7 @@ class ExpressionParser
         deque<exp_element> expression;
         
         string convertToPostfix();
+        void replaceWithPrevAnswer();
         
         void emptyExpressionQueue();
         

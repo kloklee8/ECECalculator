@@ -3,6 +3,11 @@
 #include <cmath>
 #include "EquivComponentParser.hpp"
 
+EquivComponentParser::EquivComponentParser() : ExpressionParser()
+{
+
+}
+
 EquivComponentParser::EquivComponentParser(string infix) : ExpressionParser(infix)
 {
 

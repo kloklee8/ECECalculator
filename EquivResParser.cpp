@@ -3,6 +3,11 @@
 #include <cmath>
 #include "EquivResParser.hpp"
 
+EquivResParser::EquivResParser()
+{
+
+}
+
 EquivResParser::EquivResParser(string infix) : EquivComponentParser(infix)
 {
 
