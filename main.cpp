@@ -20,7 +20,7 @@ using std::getline;
 void menu(MODE& currentMode, SUB_MODE& currentSubMode);
 void submenu(MODE& currentMode, SUB_MODE& currentSubMode);
 void sci_calculator(SciCalcParser& calcParse, MODE& currentMode);
-void equivalent_component(EquivResParser& resistParser, MODE& currentMode);
+void equivalent_component(EquivResParser& resistParser, MODE& currentMode, SUB_MODE& currentSubMode);
 
 int main()
 {
@@ -40,7 +40,7 @@ int main()
                 sci_calculator(calcParser, currentMode);
                 break;
             case EQ_COMPONENT:
-                equivalent_component(resistanceParser, currentMode);
+                equivalent_component(resistanceParser, currentMode, currentSubMode);
                 break;
             case EXIT:
                 break;
@@ -76,7 +76,8 @@ void menu(MODE& currentMode, SUB_MODE& currentSubMode)
 		{
 			currentMode = EQ_COMPONENT;
 			submenu(currentMode, currentSubMode);
-	        cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
+                        if (currentSubMode != NONE)
+                                cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
 			break;
 		}
         default:
@@ -91,7 +92,7 @@ void submenu(MODE& currentMode, SUB_MODE& currentSubMode)
 	    << "1. Resistance" << endl
 	    << "2. Capacitance" << endl
 	    << "3. Inductance" << endl
-            << "9. Help" << endl
+        << "9. Help" << endl
 	    << "0. Exit" << endl;
     getline(cin, subChoice);
     switch(subChoice[0] - '0')
@@ -106,8 +107,9 @@ void submenu(MODE& currentMode, SUB_MODE& currentSubMode)
 	        currentSubMode = INDUCTANCE;
 	        break;
         case 9:
-                Help::getHelp(currentMode, currentSubMode);
-                break;
+            currentSubMode = NONE;
+            cout << Help::getHelp(currentMode, currentSubMode);
+            break;
         default:
 	        currentSubMode = NONE;
     }
@@ -118,10 +120,9 @@ void sci_calculator(SciCalcParser& calcParser, MODE& currentMode)
     string exp;
     getline(cin, exp);
     
-    calcParser.setExpression(exp);
-
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
+        calcParser.setExpression(exp);
         //cout << calcParser.convertToPostfix(exp) << endl;
         cout << calcParser.evaluateExpression() << endl;
     }
@@ -132,17 +133,28 @@ void sci_calculator(SciCalcParser& calcParser, MODE& currentMode)
     }
 }
 
-void equivalent_component(EquivResParser& resistanceParser, MODE& currentMode)
+void equivalent_component(EquivResParser& resistanceParser, MODE& currentMode, SUB_MODE& currentSubMode)
 {
     //Depending on the sub mode, perform calculations.  Can't remember how to do this.
     string exp;
     getline(cin, exp);
-    
-    resistanceParser.setExpression(exp);
-   
+      
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
-        cout << resistanceParser.evaluateExpression() << "ohms" << endl;
+        resistanceParser.setExpression(exp);
+        cout << resistanceParser.evaluateExpression();
+        switch (currentSubMode)
+        {
+            case RESISTANCE:
+                cout << " ohms"  << endl;
+                break;
+            case CAPACITANCE:
+                cout << " F"  << endl;
+                break;
+            case INDUCTANCE:
+                cout << " H" << endl;
+                break;
+        }
     }
     else
     {
