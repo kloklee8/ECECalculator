@@ -1,5 +1,5 @@
-#include "ExpressionParser.h"
-#include "Exceptions.h"
+#include "ExpressionParser.hpp"
+#include "Exceptions.hpp"
 
 string ExpressionParser::convertToPostfix(string origInfix)
 {
@@ -99,10 +99,12 @@ string ExpressionParser::evaluatePostFix()
             operands.push(result);
         }
     }
+    
     if (operands.size() > 1)
     {
         throw InvalidPostfixException();
     }
+    
     exp_element finalValue = operands.top();
     operands.pop();
 
@@ -146,8 +148,8 @@ void ExpressionParser::processOperator(const char current, stack<exp_element>& o
         {
             if (operators.top().dataType == OPERATOR &&
                 (isLeftAssociative(current) ? 
-                    precedence(current) <= precedence(operators.top().data[0]) : // left associative
-                    precedence(current) < precedence(operators.top().data[0])))  // right associative
+                    precedenceOf(current) <= precedenceOf(operators.top().data[0]) : // left associative
+                    precedenceOf(current) < precedenceOf(operators.top().data[0])))  // right associative
             {
                 expression.push_back(operators.top());
                 operators.pop();

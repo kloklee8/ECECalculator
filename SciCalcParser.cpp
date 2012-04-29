@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <cmath>
-#include "SciCalcParser.h"
+#include "SciCalcParser.hpp"
 
 char SciCalcParser::validOps[NUMOPS] = {'+', '-', '*', '/', '%', '^'};
 char SciCalcParser::validFuncts[NUMFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
@@ -36,7 +36,7 @@ bool SciCalcParser::isFunction(const char func)
     return false;
 }
 
-int SciCalcParser::precedence(const char op)
+int SciCalcParser::precedenceOf(const char op)
 {
     switch (op)
     {
@@ -152,7 +152,7 @@ exp_element SciCalcParser::executeFunction(const exp_element funct, const exp_el
             result = sqrt(foper);
             break;
         case 'F':
-            result = fact((int)foper);
+            result = factorial((int)foper);
             break;
         case 'A':
             result = abs(foper);
@@ -186,12 +186,12 @@ string SciCalcParser::convertFuncsToChar(string infix)
     return infix;
 }
 
-int SciCalcParser::fact(int op)
+int SciCalcParser::factorial(int op)
 {
     if (op <= 1)
     {
         return 1;
     }
 
-    return op * fact(op - 1);
+    return op * factorial(op - 1);
 }
