@@ -16,7 +16,6 @@ class EquivComponentParser : public ExpressionParser
         int precedenceOf(const char op);
 
 		//Make three different 
-        virtual exp_element executeOperator(const exp_element op, const exp_element leftOp, const exp_element rightOp);
 		exp_element executeFunction(const exp_element funct, const exp_element foperand);
         string convertFuncsToChar(string infix);
 
