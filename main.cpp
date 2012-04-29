@@ -117,8 +117,7 @@ void sci_calculator(MODE& currentMode)
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
         //cout << calcParser.convertToPostfix(exp) << endl;
-        calcParser.convertToPostfix();
-        cout << calcParser.evaluatePostFix() << endl;
+        cout << calcParser.evaluateExpression() << endl;
     }
     else
     {
@@ -139,7 +138,7 @@ void equivalent_component(MODE& currentMode)
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
         resistanceParser.convertToPostfix();
-        cout << resistanceParser.evaluatePostFix() << "ohms" << endl;
+        cout << resistanceParser.evaluateExpression() << "ohms" << endl;
     }
     else
     {
