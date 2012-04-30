@@ -19,6 +19,9 @@ enum MAIN_MODE
     SCI_CALC,
     EQ_COMPONENT,
     DIVIDER,
+    CONVERSION,
+    FORMULA,
+    OPTION,
     EXIT
 };
 
@@ -33,6 +36,12 @@ enum SUB_MODE
     
     CURRENT,
     VOLTAGE
+};
+
+enum ANGLE
+{
+    DEGREE,
+    RADIAN
 };
 
 #endif

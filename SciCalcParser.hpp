@@ -3,7 +3,7 @@
 #include "ExpressionParser.hpp"
 
 #define NUMSCIOPS 6
-#define NUMSCIFUNCTS 11
+#define NUMSCIFUNCTS 14
 
 class SciCalcParser : public ExpressionParser
 {

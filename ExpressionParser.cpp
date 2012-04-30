@@ -5,13 +5,13 @@
 ExpressionParser::ExpressionParser()
 {
     infix = "";
-    prevAnswer = "";
+    prevAnswer = "0";
 }
 
 ExpressionParser::ExpressionParser(string exp_infix)
 {
     infix = exp_infix;
-    prevAnswer = "";
+    prevAnswer = "0";
 }
 
 string ExpressionParser::convertToPostfix()

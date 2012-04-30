@@ -15,6 +15,8 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::getline;
+using std::fixed;
+using std::setprecision;
 
 struct MODES
 {
@@ -22,17 +24,32 @@ struct MODES
     SUB_MODE subMode;
 } currentModes;
 
+struct OPTIONS
+{
+    ANGLE angleMode; // TODO: Implement angle changes
+    // if true, display help on entrance to each mode. If false, only display help at beginning of program.
+    bool helpDisplay; // TODO: Implement help toggling
+    int precision;
+} currentOptions;
+
 void menu();
 void eqComponentSubmenu();
 void dividerSubmenu();
 void sci_calculator(SciCalcParser& calcParse);
 void equivalent_component(EquivComponentParser& eqComponentParser);
 void divider();
+void options();
 
 int main()
 {
     currentModes.mainMode = MENU;
     currentModes.subMode = NONE;
+    
+    currentOptions.angleMode = RADIAN;
+    currentOptions.helpDisplay = true;
+    currentOptions.precision = 5;
+    cout << fixed << setprecision(5);
+    
     SciCalcParser calcParser;
     EquivComponentParser eqComponentParser;
 
@@ -52,6 +69,13 @@ int main()
             case DIVIDER:
                 divider();
                 break;
+            case CONVERSION:
+                break;
+            case FORMULA:
+                break;
+            case OPTION:
+                options();
+                break;
             case EXIT:
                 break;
         }
@@ -67,30 +91,47 @@ void menu()
     cout << "1. Scientific Calculator" << endl
          << "2. Circuit Component Equivalence" << endl
          << "3. Current and Voltage Dividers" << endl
+         << "4. Convert Between Units" << endl
+         << "5. Formulas" << endl
          << "9. Help" << endl
-         << "0. Exit" << endl;
+         << "0. Options" << endl
+         << "e. Exit" << endl;
     getline(cin, choice);
 
-    switch (choice[0] - '0')
+    switch (choice[0])
     {
-        case 9:
-            cout << Help::getHelp(currentModes.mainMode, currentModes.subMode);
-            break;
-        case 0:
-            currentModes.mainMode = EXIT;
-            break;
-        case 1: 
+        
+        case '1': 
             currentModes.mainMode = SCI_CALC;
-            cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
+            cout << "Enter an expression to calculate. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
             break;
-        case 2:
+        case '2':
 			currentModes.mainMode = EQ_COMPONENT;
 			eqComponentSubmenu();
 			break;
-		case 3:
+		case '3':
 	        currentModes.mainMode = DIVIDER;
 	        dividerSubmenu();
 	        break;
+	    case '4':
+	        // TODO: Implement conversions, with prefixes/units as submenu choices.
+	        break;
+	    case '5':
+	        /* TODO: Design formula sheets with three submenu choices:
+                    -common constants
+                    -Ohm's Law, voltage/current division, power, other common ECE formulas
+                    -Basic op-amp circuits (summing, difference, inverting, differential, integrating, etc.) formulas
+            */
+	        break;
+	    case '9':
+            cout << Help::getHelp(currentModes.mainMode, currentModes.subMode);
+            break;
+        case '0':
+            currentModes.mainMode = OPTION;
+            break;
+        case 'e':
+            currentModes.mainMode = EXIT;
+            break;
         default:
             cout << "Error: Invalid choice\n" << endl;
     }
@@ -104,28 +145,32 @@ void eqComponentSubmenu()
 	    << "2. Capacitance" << endl
 	    << "3. Inductance" << endl
         << "9. Help" << endl
-	    << "0. Exit" << endl;
+	    << "0. Main Menu" << endl;
     getline(cin, subChoice);
     
-    switch(subChoice[0] - '0')
+    switch (subChoice[0])
     {
-        case 1:
+        case '1':
 	        currentModes.subMode = RESISTANCE;
 	        break;
-        case 2:
+        case '2':
 	        currentModes.subMode = CAPACITANCE;
 	        break;
-        case 3:
+        case '3':
 	        currentModes.subMode = INDUCTANCE;
 	        break;
-        case 9:
+        case '9':
             currentModes.subMode = NONE;
             cout << Help::getHelp(currentModes.mainMode, currentModes.subMode);
+            return;
+        case '0':
+            currentModes.subMode = NONE;
+            currentModes.mainMode = MENU;
             return;
         default:
 	        currentModes.subMode = NONE;
     }
-    cout << "Enter an expression to calculate or type \"exit\" to return to the menu." << endl;
+    cout << "Enter an equivalent expression to calculate. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
 }
 
 void dividerSubmenu()
@@ -134,16 +179,20 @@ void dividerSubmenu()
     cout << "What would you like to divide?" << endl
          << "1. Current through parallel resistors" << endl
          << "2. Voltage across resistors in series" << endl
-         << "0. Exit" << endl;
+         << "0. Main Menu" << endl;
     getline(cin,subChoice);
-    
-    switch(subChoice[0] - '0')
+       
+    switch (subChoice[0])
     {
-        case 1:
+        case '1':
             currentModes.subMode = CURRENT;
             break;
-        case 2:
+        case '2':
             currentModes.subMode = VOLTAGE;
+            break;
+        case '0':
+            currentModes.mainMode = MENU;
+            currentModes.subMode = NONE;
             break;
         default:
             currentModes.subMode = NONE;
@@ -156,15 +205,25 @@ void sci_calculator(SciCalcParser& calcParser)
     string exp;
     getline(cin, exp);
     
-    if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
+    if (exp[0] != 'm' && exp[0] != 'q' &&
+        exp.find("menu") == string::npos && exp.find("quit") == string::npos)
     {
         calcParser.setExpression(exp);
-        cout << calcParser.evaluateExpression() << endl;
+        string result = calcParser.evaluateExpression();
+        cout << atof(result.c_str()) << endl;
     }
     else
     {
         cout << endl;
-        currentModes.mainMode = MENU;
+        
+        if (exp[0] == 'm' || exp.find("menu") != string::npos)
+        {
+            currentModes.mainMode = MENU;
+        }
+        else
+        {
+            currentModes.mainMode = EXIT;
+        }
     }
 }
 
@@ -180,11 +239,13 @@ void equivalent_component(EquivComponentParser& eqComponentParser)
     string exp;
     getline(cin, exp);
       
-    if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
+    if (exp[0] != 'm' && exp[0] != 'q' &&
+        exp.find("menu") == string::npos && exp.find("quit") == string::npos)
     {
         eqComponentParser.setMode(currentModes.subMode);
         eqComponentParser.setExpression(exp);
-        cout << eqComponentParser.evaluateExpression();
+        string result = eqComponentParser.evaluateExpression();
+        cout << atof(result.c_str()) << endl;
         
         switch (currentModes.subMode)
         {
@@ -202,17 +263,26 @@ void equivalent_component(EquivComponentParser& eqComponentParser)
     else
     {
         cout << endl;
-        currentModes.mainMode = MENU;
+        
+        if (exp[0] == 'm' || exp.find("menu") != string::npos)
+        {
+            currentModes.mainMode = MENU;
+        }
+        else
+        {
+            currentModes.mainMode = EXIT;
+        }
     } 
 }
 
 void divider()
 {
-    cout << "Enter the value of the source or type \"exit\" to return to the menu." << endl;
+    cout << "Enter the value of the source. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
     string exp;
     getline(cin, exp);
 
-    if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
+    if (exp[0] != 'm' && exp[0] != 'q' &&
+        exp.find("menu") == string::npos && exp.find("quit") == string::npos)
     {
         Divider divider;
         double sourceVal, r1, r2;
@@ -247,6 +317,61 @@ void divider()
     else
     {
         cout << endl;
-        currentModes.mainMode = MENU;
+        
+        if (exp[0] == 'm' || exp.find("menu") != string::npos)
+        {
+            currentModes.mainMode = MENU;
+        }
+        else
+        {
+            currentModes.mainMode = EXIT;
+        }
     }
+}
+
+void options()
+{    
+    string choice;
+    
+    do
+    {
+        cout << "Current Options: Enter the respective number to toggle." << endl
+             << "1. Angle Display: " << ((currentOptions.angleMode == RADIAN) ? "radians" : "degrees") << endl
+             << "2. Help Tips: " << ((currentOptions.helpDisplay) ? "On" : "Off") << endl
+             << "3. Result Precision: " << currentOptions.precision << endl
+             << "0. Main Menu" << endl;
+                
+        getline(cin, choice);
+        
+        switch (choice[0])
+        {
+            case '1':
+                currentOptions.angleMode = ((currentOptions.angleMode == RADIAN) ? DEGREE : RADIAN);
+                break;
+            case '2':
+                currentOptions.helpDisplay = !(currentOptions.helpDisplay);
+                break;
+            case '3':
+            {
+                string newPrecision;
+                cout << "Enter the new precision: ";
+                getline(cin, newPrecision);
+                int newPrec = atoi(newPrecision.c_str());
+                if (newPrec <= 0 || newPrec > 15)
+                {
+                    cout << "Error: Precision must be between 1 and 15, inclusive." << endl;
+                }
+                else
+                {
+                    currentOptions.precision = newPrec;
+                    cout << fixed << setprecision(currentOptions.precision);
+                }
+                break;
+            }
+            case '0':
+                currentModes.mainMode = MENU;
+                break;
+        }
+        
+    } while (choice[0] != '0');
 }
