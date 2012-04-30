@@ -2,20 +2,23 @@
 #include <sstream>
 #include <cmath>
 #include "EquivComponentParser.hpp"
-
-EquivComponentParser::EquivComponentParser() : ExpressionParser()
-{
-
-}
-
-EquivComponentParser::EquivComponentParser(string infix) : ExpressionParser(infix)
-{
-
-}
+#include "Exceptions.hpp"
 
 char EquivComponentParser::validOps[NUMEQOPS] = {'+', '|'};
-//char EqResParser::validFuncts[NUMEQFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
-//string EqResParser::validFunctWords[NUMEQFUNCTS] = {"sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};
+
+EquivComponentParser::EquivComponentParser() : ExpressionParser() 
+{
+    currentMode = RESISTANCE;
+}
+EquivComponentParser::EquivComponentParser(string infix) : ExpressionParser(infix) 
+{
+    currentMode = RESISTANCE;
+}
+
+void EquivComponentParser::setMode(SUB_MODE mode)
+{
+    currentMode = mode;
+}
 
 /*
  * Operands include any floating point numbers and integers.
@@ -42,21 +45,6 @@ bool EquivComponentParser::isOperator(const char op)
 }
 
 /*
- *	
- */
-bool EquivComponentParser::isFunction(const char func)
-{
-    /*for (int i = 0; i < NUMEQFUNCTS; i++)
-    {
-        if (func == validFuncts[i])
-        {
-            return true;
-        }
-    }*/
-    return false;
-}
-
-/*
  * Higher numbers are higher precedence.  In this case 
  * we want to perform all parallel calculations before series.
  */
@@ -72,7 +60,7 @@ int EquivComponentParser::precedenceOf(const char op)
             break;
         default:
             return -1;
-    }   
+    }
 }
 
 bool EquivComponentParser::isLeftAssociative(const char op)
@@ -88,72 +76,91 @@ bool EquivComponentParser::isLeftAssociative(const char op)
     }
 }
 
-exp_element EquivComponentParser::executeFunction(const exp_element funct, const exp_element foperand)
+exp_element EquivComponentParser::executeOperator(const exp_element op, const exp_element leftOp, const exp_element rightOp)
 {
-    /*char curFunct = (funct.data)[0];
+    //Check if the operator is valid
+    char curOp = (op.data)[0];
 
-    if (!isFunction(curFunct))
+    if (!isOperator(curOp))
     {
         return newElement(INVALID, 0);
     }
 
-    double foper = atof(foperand.data.c_str());*/
+	//Convert ascii to floating point.
+    double left = atof(leftOp.data.c_str());
+    double right = atof(rightOp.data.c_str());
     double result = 0;
-
-    /*switch (curFunct)
+    
+	//Peform defined operation
+    switch (curOp)
     {
-        case 'S':
-            result = sin(foper);
+        case '+':
+            result = calculateSeries(left, right);
             break;
-        case 'C':
-            result = cos(foper);
-            break;
-        case 'T':
-            result = tan(foper);
-            break;
-        case 'L':
-            result = log10(foper);
-            break;
-        case 'N':
-            result = log(foper);
-            break;
-        case 'E':
-            result = exp(foper);
-            break;
-        case 'R':
-            result = sqrt(foper);
-            break;
-        case 'F':
-            result = fact((int)foper);
-            break;
-        case 'A':
-            result = abs(foper);
-            break;
-        case 'O':
-            result = floor(foper);
-            break;
-        case 'I':
-            result = ceil(foper);
+        case '|':
+            result = calculateParallel(left, right);
             break;
         default:
+            throw InvalidOperatorException();
             break;
-    }*/
-
+    }
+    
+	//stuff result back into a stream.
     std::ostringstream resultStr;
     resultStr << result;
 
+	//Replace the operation performed with it's equivalent.
     return newElement(OPERAND, resultStr.str());
 }
 
+double EquivComponentParser::calculateSeries(double left, double right)
+{
+    double result = 0;
+    switch (currentMode)
+    {
+        case RESISTANCE:
+        case INDUCTANCE:
+            result = (left + right);
+            break;
+        case CAPACITANCE:
+            result = (left * right) / (left + right);
+            break;
+        default:
+            throw InvalidModeException();
+    }
+    
+    return result;
+}
+
+double EquivComponentParser::calculateParallel(double left, double right)
+{
+    double result;
+    switch (currentMode)
+    {
+        case RESISTANCE:
+        case INDUCTANCE:
+            result = (left * right) / (left + right);
+            break;
+        case CAPACITANCE:
+            result = (left + right);
+            break;
+        default:
+            throw InvalidModeException();
+    }
+    
+    return result;
+}
+
+// no valid functions for equivalent calculations
+bool EquivComponentParser::isFunction(const char func)
+{
+    return false;
+}
+exp_element EquivComponentParser::executeFunction(const exp_element funct, const exp_element foperand)
+{
+    return newElement(INVALID, "");
+}
 string EquivComponentParser::convertFuncsToChar(string infix)
 {
-    /*for (int i = 0; i < NUMEQFUNCTS; i++)
-    {
-        while (infix.find(validFunctWords[i]) != string::npos)
-        {
-            infix.replace(infix.find(validFunctWords[i]), validFunctWords[i].length(), string(1, validFuncts[i]));
-        }
-    }*/
-
     return infix;
 }

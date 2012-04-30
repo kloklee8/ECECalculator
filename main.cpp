@@ -5,9 +5,7 @@
 #include <string>
 #include "ExpressionParser.hpp"
 #include "SciCalcParser.hpp"
-#include "EquivResParser.hpp"
-#include "EquivCapParser.hpp"
-#include "EquivIndParser.hpp"
+#include "EquivComponentParser.hpp"
 #include "enum.hpp"
 #include "Help.hpp"
 #include "Divider.hpp"
@@ -28,7 +26,7 @@ void menu();
 void eqComponentSubmenu();
 void dividerSubmenu();
 void sci_calculator(SciCalcParser& calcParse);
-void equivalent_component(EquivResParser& resistParser);
+void equivalent_component(EquivComponentParser& eqComponentParser);
 void divider();
 
 int main()
@@ -36,7 +34,7 @@ int main()
     currentModes.mainMode = MENU;
     currentModes.subMode = NONE;
     SciCalcParser calcParser;
-    EquivResParser resistanceParser;
+    EquivComponentParser eqComponentParser;
 
     while (currentModes.mainMode != EXIT)
     {
@@ -49,7 +47,7 @@ int main()
                 sci_calculator(calcParser);
                 break;
             case EQ_COMPONENT:
-                equivalent_component(resistanceParser);
+                equivalent_component(eqComponentParser);
                 break;
             case DIVIDER:
                 divider();
@@ -66,11 +64,11 @@ int main()
 void menu()
 {
     string choice; // using string instead of int to prevent whitespace issues with other parts of the program
-    cout << "1. Scientific Calculator" << endl <<
-            "2. Circuit Component Equivalence" << endl <<
-            "3. Current and Voltage Dividers" << endl <<
-            "9. Help" << endl <<
-            "0. Exit" << endl;
+    cout << "1. Scientific Calculator" << endl
+         << "2. Circuit Component Equivalence" << endl
+         << "3. Current and Voltage Dividers" << endl
+         << "9. Help" << endl
+         << "0. Exit" << endl;
     getline(cin, choice);
 
     switch (choice[0] - '0')
@@ -161,7 +159,6 @@ void sci_calculator(SciCalcParser& calcParser)
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
         calcParser.setExpression(exp);
-        //cout << calcParser.convertToPostfix(exp) << endl;
         cout << calcParser.evaluateExpression() << endl;
     }
     else
@@ -171,21 +168,24 @@ void sci_calculator(SciCalcParser& calcParser)
     }
 }
 
-void equivalent_component(EquivResParser& resistanceParser)
+void equivalent_component(EquivComponentParser& eqComponentParser)
 {
     if (currentModes.subMode == NONE)
     {
         eqComponentSubmenu();
         return;
     }
+    
     //Depending on the sub mode, perform calculations.
     string exp;
     getline(cin, exp);
       
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
-        resistanceParser.setExpression(exp);
-        cout << resistanceParser.evaluateExpression();
+        eqComponentParser.setMode(currentModes.subMode);
+        eqComponentParser.setExpression(exp);
+        cout << eqComponentParser.evaluateExpression();
+        
         switch (currentModes.subMode)
         {
             case RESISTANCE:
@@ -211,7 +211,6 @@ void divider()
     cout << "Enter the value of the source or type \"exit\" to return to the menu." << endl;
     string exp;
     getline(cin, exp);
-    
 
     if (exp.find("exit") == string::npos && exp.find("EXIT") == string::npos)
     {
@@ -238,16 +237,16 @@ void divider()
             cout << "The current through the first resistor is " << result1 << " amps." << endl
                  << "The current through the second resistor is " << result2 << " amps." << endl;
         }
-        else
+        else if (currentModes.subMode == VOLTAGE)
         {
             divider.divideVoltage(sourceVal, r1, r2, &result1, &result2);
             cout << "The voltage across the first resistor is " << result1 << " volts." <<endl
                  << "The voltage across the second resistor is " << result2 << " volts." <<endl;
         }
-
     }
     else
     {
+        cout << endl;
         currentModes.mainMode = MENU;
     }
 }

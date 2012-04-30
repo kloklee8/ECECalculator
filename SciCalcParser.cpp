@@ -2,20 +2,14 @@
 #include <sstream>
 #include <cmath>
 #include "SciCalcParser.hpp"
+#include "Exceptions.hpp"
 
 char SciCalcParser::validOps[NUMSCIOPS] = {'+', '-', '*', '/', '%', '^'};
 char SciCalcParser::validFuncts[NUMSCIFUNCTS] = {'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
 string SciCalcParser::validFunctWords[NUMSCIFUNCTS] = {"sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};
 
-SciCalcParser::SciCalcParser() : ExpressionParser()
-{
-
-}
-
-SciCalcParser::SciCalcParser(string infix) : ExpressionParser(infix)
-{
-
-}
+SciCalcParser::SciCalcParser() : ExpressionParser() {}
+SciCalcParser::SciCalcParser(string infix) : ExpressionParser(infix) {}
 
 bool SciCalcParser::isOperand(const char op)
 {
@@ -117,6 +111,7 @@ exp_element SciCalcParser::executeOperator(const exp_element op, const exp_eleme
             result = pow(left, right);
             break;
         default:
+            throw InvalidOperatorException();
             break;
     }
     

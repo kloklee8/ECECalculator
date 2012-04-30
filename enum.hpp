@@ -1,7 +1,16 @@
 #ifndef ENUM_H
 #define ENUM_H
 
-//This class is purely for sharing enums between classes.
+//This file is purely for defining enums that will be used across the program.
+
+enum DATA_TYPE
+{
+    OPERAND,
+    OPERATOR,
+    FUNCTION,
+    PAREN,
+    INVALID
+};
 
 //Current calculator mode that the user is in.
 enum MAIN_MODE

@@ -4,9 +4,9 @@
 class Divider
 {
     public:
-        Divider();
-        void divideCurrent(double vs, double r1, double r2, double* vr1, double* vr2);
-        void divideVoltage(double is, double r1, double r2, double* ir1, double* ir2);
+        void divideCurrent(const double vs, const double r1, const double r2, double* vr1, double* vr2);
+        void divideVoltage(const double is, const double r1, const double r2, double* ir1, double* ir2);
+        
     private:
     
 };

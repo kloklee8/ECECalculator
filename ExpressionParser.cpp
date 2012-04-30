@@ -2,8 +2,7 @@
 #include "ExpressionParser.hpp"
 #include "Exceptions.hpp"
 
-
-ExpressionParser::ExpressionParser() 
+ExpressionParser::ExpressionParser()
 {
     infix = "";
     prevAnswer = "";
@@ -18,7 +17,8 @@ ExpressionParser::ExpressionParser(string exp_infix)
 string ExpressionParser::convertToPostfix()
 {
     infix = convertFuncsToChar(infix);
-    replaceWithPrevAnswer();
+    // replace all instances of '#' with the value of the previous answer.
+    replaceWithPrevAnswer(); 
 
     stack<exp_element> operators;
     string operandBuffer = "";
@@ -32,7 +32,7 @@ string ExpressionParser::convertToPostfix()
         {
             if (isOperand(current))
             {
-                processOperand(current, infix, it, operandBuffer);
+                processOperand(current, it, operandBuffer);
             }
             else if (isOperator(current))
             {
@@ -52,16 +52,18 @@ string ExpressionParser::convertToPostfix()
             }
         }
     }
-
+    
+    //pushes the rest of the operators stack to the end of the expression queue
     while (!operators.empty())
     {
-        expression.push_back(operators.top());
+        postfixExpression.push_back(operators.top());
         operators.pop();
     }
     
+    // create the postfix expression from the expression queue.
     string postfix = "";
     deque<exp_element>::iterator expIt;
-    for (expIt = expression.begin(); expIt != expression.end(); expIt++)
+    for (expIt = postfixExpression.begin(); expIt != postfixExpression.end(); expIt++)
     {
         postfix += (*expIt).data + " ";
     }
@@ -80,25 +82,25 @@ void ExpressionParser::replaceWithPrevAnswer()
 void ExpressionParser::setExpression(string exp)
 {
     infix = exp;
-    emptyExpressionQueue();
+    emptyPostfixExpressionQueue();
     convertToPostfix();
 }
 
 string ExpressionParser::evaluateExpression()
 {
-    if (expression.size() == 0)
+    if (infix == "")
     {
-        if (infix == "")
-        {
-            return "";
-        }
+        throw NoExpressionException();
+    }
+    if (postfixExpression.size() == 0)
+    {
         convertToPostfix();
     }
 
     stack<exp_element> operands;
 
     deque<exp_element>::iterator it;
-    for (it = expression.begin(); it != expression.end(); it++)
+    for (it = postfixExpression.begin(); it != postfixExpression.end(); it++)
     {
         if ((*it).dataType == OPERAND)
         {
@@ -155,7 +157,7 @@ exp_element ExpressionParser::newElement(const DATA_TYPE type, const string data
     return newElement;
 }
 
-void ExpressionParser::processOperand(const char current, string& infix, string::iterator it, string& curBuffer)
+void ExpressionParser::processOperand(const char current, string::iterator it, string& curBuffer)
 {
     curBuffer += current;
     string::iterator nextIt = it;
@@ -164,7 +166,7 @@ void ExpressionParser::processOperand(const char current, string& infix, string:
     if ((nextIt == infix.end()) || (!isOperand(*(nextIt))))
     {
         exp_element newOperand = newElement(OPERAND, curBuffer);
-        expression.push_back(newOperand);
+        postfixExpression.push_back(newOperand);
         curBuffer = "";
     }
 }
@@ -181,12 +183,11 @@ void ExpressionParser::processOperator(const char current, stack<exp_element>& o
     {
         while (!operators.empty() && operators.top().dataType == OPERATOR)
         {
-            if (operators.top().dataType == OPERATOR &&
-                (isLeftAssociative(current) ? 
+            if (isLeftAssociative(current) ? 
                     precedenceOf(current) <= precedenceOf(operators.top().data[0]) : // left associative
-                    precedenceOf(current) < precedenceOf(operators.top().data[0])))  // right associative
+                    precedenceOf(current) < precedenceOf(operators.top().data[0]))  // right associative
             {
-                expression.push_back(operators.top());
+                postfixExpression.push_back(operators.top());
                 operators.pop();
             }
             else
@@ -220,7 +221,7 @@ void ExpressionParser::processParen(const char current, stack<exp_element>& oper
 
         while (operators.top().dataType != PAREN)
         {
-            expression.push_back(operators.top());
+            postfixExpression.push_back(operators.top());
             operators.pop();
             if (operators.size() == 0)
             {
@@ -233,14 +234,14 @@ void ExpressionParser::processParen(const char current, stack<exp_element>& oper
         {
             if (operators.top().dataType == FUNCTION)
             {
-                expression.push_back(operators.top());
+                postfixExpression.push_back(operators.top());
                 operators.pop();
             }
         }
     }
 }
 
-void ExpressionParser::emptyExpressionQueue()
+void ExpressionParser::emptyPostfixExpressionQueue()
 {
-    expression.erase(expression.begin(), expression.end());
+    postfixExpression.erase(postfixExpression.begin(), postfixExpression.end());
 }

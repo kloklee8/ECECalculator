@@ -5,19 +5,12 @@
 #include <deque>
 #include <stack>
 #include <iterator>
+#include "enum.hpp"
 
 using std::deque;
 using std::stack;
 using std::string;
 
-enum DATA_TYPE
-{
-    OPERAND,
-    OPERATOR,
-    FUNCTION,
-    PAREN,
-    INVALID
-};
 struct exp_element
 {
     DATA_TYPE dataType;
@@ -31,12 +24,14 @@ class ExpressionParser
         ExpressionParser();
         ExpressionParser(string infix);
         
-        exp_element newElement(const DATA_TYPE type, const string data);
-        
-        string evaluateExpression();
         void setExpression(string exp);
+        string evaluateExpression();
+        
+        exp_element newElement(const DATA_TYPE type, const string data);
 
-        // abstract functions
+        // abstract functions; defined by child classes, but declared here
+        // because it is required by the convertToPostfix() and evaluateExpression()
+        // functions, which are completely implemented in this class.
         virtual bool isOperand(const char op) = 0;
         virtual bool isOperator(const char op) = 0;
         virtual bool isFunction(const char op) = 0;
@@ -49,14 +44,13 @@ class ExpressionParser
     private:
         string infix;
         string prevAnswer;
-        deque<exp_element> expression;
+        deque<exp_element> postfixExpression;
         
         string convertToPostfix();
         void replaceWithPrevAnswer();
+        void emptyPostfixExpressionQueue();
         
-        void emptyExpressionQueue();
-        
-        void processOperand(const char current, string& infix, string::iterator it, string& curBuffer);
+        void processOperand(const char current, string::iterator it, string& curBuffer);
         void processOperator(const char current, stack<exp_element>& operators);
         void processFunction(const char current, stack<exp_element>& operators);
         void processParen(const char current, stack<exp_element>& operators);
