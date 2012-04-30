@@ -38,7 +38,7 @@ void dividerSubmenu();
 void sci_calculator(SciCalcParser& calcParse);
 void equivalent_component(EquivComponentParser& eqComponentParser);
 void divider();
-void options();
+void options(SciCalcParser& calcParser);
 
 int main()
 {
@@ -74,7 +74,7 @@ int main()
             case FORMULA:
                 break;
             case OPTION:
-                options();
+                options(calcParser);
                 break;
             case EXIT:
                 break;
@@ -329,14 +329,14 @@ void divider()
     }
 }
 
-void options()
+void options(SciCalcParser& calcParser)
 {    
     string choice;
     
     do
     {
         cout << "Current Options: Enter the respective number to toggle." << endl
-             << "1. Angle Display: " << ((currentOptions.angleMode == RADIAN) ? "radians" : "degrees") << endl
+             << "1. Angle Units: " << ((currentOptions.angleMode == RADIAN) ? "radians" : "degrees") << endl
              << "2. Help Tips: " << ((currentOptions.helpDisplay) ? "On" : "Off") << endl
              << "3. Result Precision: " << currentOptions.precision << endl
              << "0. Main Menu" << endl;
@@ -347,6 +347,7 @@ void options()
         {
             case '1':
                 currentOptions.angleMode = ((currentOptions.angleMode == RADIAN) ? DEGREE : RADIAN);
+                calcParser.setAngleMode(currentOptions.angleMode);
                 break;
             case '2':
                 currentOptions.helpDisplay = !(currentOptions.helpDisplay);

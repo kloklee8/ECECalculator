@@ -10,8 +10,14 @@ char SciCalcParser::validOps[NUMSCIOPS] = {'+', '-', '*', '/', '%', '^'};
 char SciCalcParser::validFuncts[NUMSCIFUNCTS] = {'B', 'D', 'G', 'S', 'C', 'T', 'L', 'N', 'E', 'R', 'F', 'A', 'O', 'I'};
 string SciCalcParser::validFunctWords[NUMSCIFUNCTS] = {"arcsin", "arccos", "arctan", "sin", "cos", "tan", "log", "ln", "exp", "sqrt", "fact", "abs", "floor", "ceil"};
 
-SciCalcParser::SciCalcParser() : ExpressionParser() {}
-SciCalcParser::SciCalcParser(string infix) : ExpressionParser(infix) {}
+SciCalcParser::SciCalcParser() : ExpressionParser() 
+{
+    angleMode = RADIAN;
+}
+SciCalcParser::SciCalcParser(string infix) : ExpressionParser(infix) 
+{
+    angleMode = RADIAN;
+}
 
 bool SciCalcParser::isOperand(const char op)
 {
@@ -159,6 +165,15 @@ exp_element SciCalcParser::executeFunction(const exp_element funct, const exp_el
     }
     double result = 0;
     
+    // if the current function is a trig function, and the mode is in degree
+    // must convert operand into radians because the functions accept only radians.
+    if ((curFunct == 'S' || curFunct == 'C' || curFunct == 'T' || 
+        curFunct == 'B' || curFunct == 'D' || curFunct == 'G') &&
+        angleMode == DEGREE)
+    {
+        foper = foper * PI / 180.0;
+    }
+    
     switch (curFunct)
     {
         case 'S':
@@ -206,6 +221,15 @@ exp_element SciCalcParser::executeFunction(const exp_element funct, const exp_el
         default:
             break;
     }
+    
+    // if the current function is a trig function, and the mode is in degree
+    // must convert operand back into degree because the functions return radian answers.
+    if ((curFunct == 'S' || curFunct == 'C' || curFunct == 'T' || 
+        curFunct == 'B' || curFunct == 'D' || curFunct == 'G') &&
+        angleMode == DEGREE)
+    {
+        foper = foper * 180.0 / PI;
+    }
 
     std::ostringstream resultStr;
     resultStr << result;
@@ -235,3 +259,14 @@ int SciCalcParser::factorial(int op)
 
     return op * factorial(op - 1);
 }
+
+ANGLE SciCalcParser::getAngleMode()
+{
+    return angleMode;
+}
+
+void SciCalcParser::setAngleMode(ANGLE mode)
+{
+    angleMode = mode;
+}
+
