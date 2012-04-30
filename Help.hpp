@@ -14,7 +14,7 @@ using std::string;
 class Help
 {
 public:
-    static string getHelp(MODE mode, SUB_MODE submode);
+    static string getHelp(MAIN_MODE mode, SUB_MODE submode);
 private:
     static void getMenuHelp(string&);
     static void getSciHelp(string&);

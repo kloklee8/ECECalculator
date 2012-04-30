@@ -4,11 +4,12 @@
 //This class is purely for sharing enums between classes.
 
 //Current calculator mode that the user is in.
-enum MODE
+enum MAIN_MODE
 {
     MENU,
     SCI_CALC,
     EQ_COMPONENT,
+    DIVIDER,
     EXIT
 };
 
@@ -19,7 +20,10 @@ enum SUB_MODE
     NONE,
     RESISTANCE,
     CAPACITANCE,
-    INDUCTANCE
+    INDUCTANCE,
+    
+    CURRENT,
+    VOLTAGE
 };
 
 #endif

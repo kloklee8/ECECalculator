@@ -1,6 +1,6 @@
 #include "Help.hpp"
 
-string Help::getHelp(MODE mode, SUB_MODE submode)
+string Help::getHelp(MAIN_MODE mode, SUB_MODE submode)
 {
     string help = "";
     switch (mode)
