@@ -2,7 +2,6 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <string>
 #include "ExpressionParser.hpp"
 #include "SciCalcParser.hpp"
 #include "EquivComponentParser.hpp"
@@ -14,14 +13,9 @@
 #include "Formulas.hpp"
 #include "CalculationHandler.hpp"
 
-using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
-using std::getline;
-using std::ios;
-using std::fixed;
-using std::setprecision;
 
 MODES currentModes;
 OPTIONS currentOptions;
@@ -69,6 +63,7 @@ int main(int argc, const char* argv[])
             {
                 printFormulas();
                 waitForUser();
+                currentModes.mainMode = MENU;
                 break;
             }
             case OPTION:
