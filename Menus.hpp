@@ -5,5 +5,6 @@ void menu();
 void eqComponentSubmenu();
 void dividerSubmenu();
 void prefixMenu();
+void waitForUser();
 
 #endif
