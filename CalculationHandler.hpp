@@ -9,5 +9,6 @@ void sci_calculator(SciCalcParser& calcParse);
 void equivalent_component(EquivComponentParser& eqComponentParser);
 void divider();
 void options(SciCalcParser& calcParser);
+void setOptions(ANGLE angleMode, bool helpDisplay, int precision, bool scientificNotation);
 
 #endif

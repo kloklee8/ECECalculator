@@ -31,9 +31,7 @@ int main()
     currentModes.mainMode = MENU;
     currentModes.subMode = NONE;
     
-    currentOptions.angleMode = RADIAN;
-    currentOptions.helpDisplay = true;
-    currentOptions.precision = -1;
+    setOptions(RADIAN, true, -1, false);
     
     SciCalcParser calcParser;
     EquivComponentParser eqComponentParser;

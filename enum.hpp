@@ -56,6 +56,7 @@ struct OPTIONS
     // if true, display help on entrance to each mode. If false, only display help at beginning of program.
     bool helpDisplay; // TODO: Implement help toggling
     int precision;
+    bool scientificNotation;
 };
 
 #endif
