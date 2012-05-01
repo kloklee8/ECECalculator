@@ -13,6 +13,7 @@ using std::setprecision;
 using std::endl;
 using std::ios;
 using std::fixed;
+using std::scientific;
 
 extern MODES currentModes;
 extern OPTIONS currentOptions;
@@ -159,6 +160,7 @@ void options(SciCalcParser& calcParser)
              << "1. Angle Units: " << ((currentOptions.angleMode == RADIAN) ? "radians" : "degrees") << endl
              << "2. Help Tips: " << ((currentOptions.helpDisplay) ? "On" : "Off") << endl
              << "3. Result Precision: " << currentOptions.precision << endl
+             << "4. Scientific Notation: " << (currentOptions.scientificNotation ? "On" : "Off") << endl
              << "0. Main Menu" << endl;
                 
         getline(cin, choice);
@@ -196,6 +198,16 @@ void options(SciCalcParser& calcParser)
                 }
                 break;
             }
+            case '4':
+                currentOptions.scientificNotation = !(currentOptions.scientificNotation);
+                if (currentOptions.scientificNotation)
+                {
+                    cout << scientific;
+                }
+                else
+                {
+                    cout.unsetf(ios::scientific);
+                }
             case '0':
                 currentModes.mainMode = MENU;
                 currentModes.subMode = NONE;
@@ -206,4 +218,12 @@ void options(SciCalcParser& calcParser)
         }
         
     } while (choice[0] != '0');
+}
+
+void setOptions(ANGLE angleMode, bool helpDisplay, int precision, bool scientific)
+{
+    currentOptions.angleMode = angleMode;
+    currentOptions.helpDisplay = helpDisplay;
+    currentOptions.precision = precision;
+    currentOptions.scientificNotation = scientific;
 }
