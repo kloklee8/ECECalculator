@@ -171,7 +171,7 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
     
 }
 
-void helpMainMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
+void helpMainMenu(MAIN_MODE& helpMode)
 {
     cout << ("1. Scientific Calculator\n2. Equivalent Component\n3. Voltage and"
             "Current dividers\n4. Prefix Conversions\n5. Formula Sheet\n6. Options\n"
