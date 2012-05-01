@@ -2,6 +2,7 @@
 #include <string>
 #include "Help.hpp"
 #include "Menus.hpp"
+#include "enum.hpp"
 
 using std::cout;
 using std::endl;
@@ -17,23 +18,23 @@ void getOptionHelp();
 void pressAny();
 
 //Current calculator mode that the user is in.
-MAIN_MODE menuMode;
+MAIN_MODE helpMode;
 
 //Modes that make up a MODE.  Put all sub-modes here, 
 //no matter which mode your in.
-SUB_MODE menuSubMode;
+SUB_MODE helpSubMode;
 
 void getHelp()
 {
     string input = "";
-    menuMode = MENU;
+    helpMode = MENU;
     //getline(cin, input);
     //(input[0] != 'm' && exp[0] != 'q')
     while (1)
     {
         string help = "Looking for help?  Choose from the following topics you wish"
                         "to find more information about: ";
-        switch (menuMode)
+        switch (helpMode)
         {
             case MENU:
                 getMenuHelp();
@@ -43,6 +44,7 @@ void getHelp()
                 break;
             case EQ_COMPONENT:
                 getEquivHelp();
+                break;
             case DIVIDER:
                 getDividerHelp();
                 break;
@@ -78,18 +80,13 @@ void getSciHelp()
 //Return help corresponding to the equivalence component mode.
 void getEquivHelp()
 {
-//    helpEqComponentSubMenu(menuSubMode);
-//                cout << ("Equivalent Component help: \nThis mode is used to" 
-//                        " determine the equivalence of multiple circuit components"
-//                        " that are in series or parallel.  For example, you may " 
-//                        " want to know the equivalence of five resistors that" 
-//                        " are in a complex network.  Operators include \'+\' for"
-//                        " series and \'|\' for parallel.");
-    if (menuSubMode == NONE)
+    helpEqComponentSubMenu(helpMode, helpSubMode);
+                
+    if (helpSubMode == NONE)
         return;
     else
     {
-        switch (menuSubMode) 
+        switch (helpSubMode) 
         {
             case RESISTANCE:
                 cout << ("Equivalent Resistance help: \nThis mode is used to" 

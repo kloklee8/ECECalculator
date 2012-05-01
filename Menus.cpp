@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "Menus.hpp"
-#include "enum.hpp"
 #include "Help.hpp"
 
 using std::cout;
@@ -139,6 +138,39 @@ void prefixMenu()
          << "   9. pico [p] (10^-12)" << endl
          << "   0. Main Menu" << endl;
 }
+
+void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
+{
+    cout << ("\n\nEquivalent Component help: \nThis mode is used to"
+            " determine the equivalence of multiple circuit components"
+            " that are in series or parallel.  For example, you may "
+            " want to know the equivalence of five resistors that"
+            " are in a complex network.  Operators include \'+\' for"
+            " series and \'|\' for parallel.") << endl;
+    cout << ("1. Resistance\n2. Capacitance\n3. Inductance\n0. Return");
+    string choice;
+    getline(cin, choice);
+    switch(choice[0] - '0')
+    {
+        case 1:
+            helpSubMode = RESISTANCE;
+            break;
+        case 2:
+            helpSubMode = CAPACITANCE;
+            break;
+        case 3:
+            helpSubMode = INDUCTANCE;
+            break;
+        case 0:
+            helpMode = MENU;
+            break;
+    }
+    
+    
+    
+}
+
+
 
 void waitForUser()
 {
