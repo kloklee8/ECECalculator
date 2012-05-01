@@ -6,6 +6,7 @@
 using std::cout;
 using std::ifstream;
 using std::string;
+using std::endl;
 
 void printFormulas()
 {
@@ -16,7 +17,7 @@ void printFormulas()
     
     while (in)
     {
-        cout << line;
+        cout << line << endl;
         getline(in, line);
     }
 }
