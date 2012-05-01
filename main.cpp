@@ -13,7 +13,6 @@
 #include "CalculationHandler.hpp"
 
 using std::cout;
-using std::cin;
 using std::endl;
 using std::fixed;
 using std::setprecision;
@@ -30,7 +29,7 @@ int main(int argc, char* argv[])
     currentModes.mainMode = MENU;
     currentModes.subMode = NONE;
     
-    setOptions(RADIAN, false, -1, false);
+    setOptions(RADIAN, -1, false);
     readFormulas();
     
     SciCalcParser calcParser;
@@ -86,17 +85,12 @@ int main(int argc, char* argv[])
 
 bool processCommandLineArguments(int argc, char* argv[], SciCalcParser& calcParser)
 {
-    // TODO: Implement command lines
     for (int i = 1; i < argc; i++)
     {
         if (string(argv[i]) == "--degrees" || string(argv[i]) == "-d")
         {
             currentOptions.angleMode = DEGREE;
             calcParser.setAngleMode(currentOptions.angleMode);
-        }
-        else if (string(argv[i]) == "--help" || string(argv[i]) == "-h")
-        {
-            currentOptions.helpDisplay = true;
         }
         else if (string(argv[i]) == "--precision" || string(argv[i]) == "-p")
         {
@@ -115,6 +109,10 @@ bool processCommandLineArguments(int argc, char* argv[], SciCalcParser& calcPars
             else
             {
                 currentOptions.precision = prec;
+                if (!currentOptions.scientificNotation)
+                {
+                    cout << fixed;
+                }
                 cout << setprecision(currentOptions.precision);
             }
         }

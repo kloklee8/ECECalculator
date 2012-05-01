@@ -21,7 +21,7 @@ void menu()
          << "5. Formulas" << endl
          << "9. Help" << endl
          << "0. Options" << endl
-         << "e. Exit" << endl;
+         << "q. Quit" << endl;
     getline(cin, choice);
 
     switch (choice[0])
@@ -56,7 +56,7 @@ void menu()
             currentModes.mainMode = OPTION;
             currentModes.subMode = NONE;
             break;
-        case 'e':
+        case 'q':
             currentModes.mainMode = EXIT;
             break;
         default:
@@ -197,7 +197,7 @@ void helpMainMenu(MAIN_MODE& helpMode)
             break;
         case 0:
             helpMode = EXIT;
-            
+    
     }    
 }
 

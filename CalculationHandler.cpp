@@ -159,9 +159,8 @@ void options(SciCalcParser& calcParser)
     {
         cout << "Current Options: Enter the respective number to toggle." << endl
              << "1. Angle Units: " << ((currentOptions.angleMode == RADIAN) ? "radians" : "degrees") << endl
-             << "2. Help Tips: " << ((currentOptions.helpDisplay) ? "On" : "Off") << endl
-             << "3. Result Precision: " << currentOptions.precision << endl
-             << "4. Scientific Notation: " << (currentOptions.scientificNotation ? "On" : "Off") << endl
+             << "2. Result Precision: " << currentOptions.precision << endl
+             << "3. Scientific Notation: " << (currentOptions.scientificNotation ? "On" : "Off") << endl
              << "0. Main Menu" << endl;
                 
         getline(cin, choice);
@@ -173,9 +172,6 @@ void options(SciCalcParser& calcParser)
                 calcParser.setAngleMode(currentOptions.angleMode);
                 break;
             case '2':
-                currentOptions.helpDisplay = !(currentOptions.helpDisplay);
-                break;
-            case '3':
             {
                 string newPrecision;
                 cout << "Enter the new precision, or d for default: ";
@@ -202,7 +198,7 @@ void options(SciCalcParser& calcParser)
                 }
                 break;
             }
-            case '4':
+            case '3':
             {
                 currentOptions.scientificNotation = !(currentOptions.scientificNotation);
                 if (currentOptions.scientificNotation)
@@ -231,10 +227,9 @@ void options(SciCalcParser& calcParser)
     } while (choice[0] != '0');
 }
 
-void setOptions(ANGLE angleMode, bool helpDisplay, int precision, bool scientific)
+void setOptions(ANGLE angleMode, int precision, bool scientific)
 {
     currentOptions.angleMode = angleMode;
-    currentOptions.helpDisplay = helpDisplay;
     currentOptions.precision = precision;
     currentOptions.scientificNotation = scientific;
 }
