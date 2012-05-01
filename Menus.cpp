@@ -54,7 +54,7 @@ void menu()
             */
 	        break;
 	    case '9':
-            Help::getHelp();
+            getHelp();
             break;
         case '0':
             currentModes.mainMode = OPTION;

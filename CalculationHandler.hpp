@@ -3,6 +3,7 @@
 
 #include "SciCalcParser.hpp"
 #include "EquivComponentParser.hpp"
+#include "Divider.hpp"
 
 void sci_calculator(SciCalcParser& calcParse);
 void equivalent_component(EquivComponentParser& eqComponentParser);

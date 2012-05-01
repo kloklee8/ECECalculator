@@ -1,4 +1,20 @@
+#include <iostream>
+#include <string>
 #include "Help.hpp"
+#include "Menus.hpp"
+
+using std::cout;
+using std::endl;
+using std::string;
+
+void getMenuHelp();
+void getSciHelp();
+void getEquivHelp();
+void getDividerHelp();
+void getConvHelp();
+void getFormulaHelp();
+void getOptionHelp();
+void pressAny();
 
 //Current calculator mode that the user is in.
 MAIN_MODE menuMode;
@@ -7,7 +23,7 @@ MAIN_MODE menuMode;
 //no matter which mode your in.
 SUB_MODE menuSubMode;
 
-void Help::getHelp()
+void getHelp()
 {
     string input = "";
     menuMode = MENU;
@@ -35,7 +51,8 @@ void Help::getHelp()
                 break;
             case FORMULA:
                 getFormulaHelp();
-            case OPTIONS:
+                break;
+            case OPTION:
                 getOptionHelp();
                 break;
             default:
@@ -49,17 +66,17 @@ void Help::getHelp()
 
 //Return help corresponding to the menu screen and how to use the entire 
 //calculator.
-void Help::getMenuHelp()
+void getMenuHelp()
 {
 }
 
 //Return help corresponding to the scientific calculator mode.
-void Help::getSciHelp()
+void getSciHelp()
 {
 }
 
 //Return help corresponding to the equivalence component mode.
-void Help::getEquivHelp()
+void getEquivHelp()
 {
 //    helpEqComponentSubMenu(menuSubMode);
 //                cout << ("Equivalent Component help: \nThis mode is used to" 
@@ -109,21 +126,22 @@ void Help::getEquivHelp()
     }
 }
 
-getDividerHelp()
-{
-    
-}
-getConvHelp()
-{
-    
-}
-    
-getFormulaHelp()
+void getDividerHelp()
 {
     
 }
 
-getOptionHelp()
+void getConvHelp()
+{
+    
+}
+    
+void getFormulaHelp()
+{
+    
+}
+
+void getOptionHelp()
 {
     
 }

@@ -4,11 +4,15 @@
 #include <string>
 #include "CalculationHandler.hpp"
 #include "enum.hpp"
+#include "Menus.hpp"
 
 using std::cout;
 using std::string;
 using std::cin;
 using std::setprecision;
+using std::endl;
+using std::ios;
+using std::fixed;
 
 extern MODES currentModes;
 extern OPTIONS currentOptions;
