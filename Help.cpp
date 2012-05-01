@@ -26,14 +26,11 @@ SUB_MODE helpSubMode;
 
 void getHelp()
 {
-    string input = "";
     helpMode = MENU;
     //getline(cin, input);
     //(input[0] != 'm' && exp[0] != 'q')
     while (1)
     {
-        string help = "Looking for help?  Choose from the following topics you wish"
-                        "to find more information about: ";
         switch (helpMode)
         {
             case MENU:
@@ -70,11 +67,16 @@ void getHelp()
 //calculator.
 void getMenuHelp()
 {
+    cout <<("Looking for help?  Choose from the following topics you wish"
+                        "to find more information about: ");
+    helpMode = EQ_COMPONENT;
 }
 
 //Return help corresponding to the scientific calculator mode.
 void getSciHelp()
 {
+    cout << "Scientific Calculator Help";
+    helpMode = EQ_COMPONENT;
 }
 
 //Return help corresponding to the equivalence component mode.
@@ -96,7 +98,7 @@ void getEquivHelp()
                         " resistor 1 (1 ohms)is in series with the parallel combination of"
                         " resistor 2 (2 ohms) and 3 (3 ohms), the following syntax can be used"
                         " to determine the equivalent resistance:\n"
-                        " .001 + .002|.003\n\n");
+                        " .001 + .002|.003");
                 break;
             case CAPACITANCE:
                 cout << ("Equivalent Capacitance help: \nThis mode is used to" 
@@ -125,22 +127,26 @@ void getEquivHelp()
 
 void getDividerHelp()
 {
-    
+    cout << "Divider Help";
+    helpMode = EQ_COMPONENT;
 }
 
 void getConvHelp()
 {
-    
+    cout << "Conversion Help";
+    helpMode = EQ_COMPONENT;
 }
     
 void getFormulaHelp()
 {
-    
+    cout << "Formula Help";
+    helpMode = EQ_COMPONENT;
 }
 
 void getOptionHelp()
 {
-    
+    cout << "Option Help";
+    helpMode = EQ_COMPONENT;
 }
 
 void pressAny()

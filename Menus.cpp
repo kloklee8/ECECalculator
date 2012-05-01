@@ -147,7 +147,7 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
             " want to know the equivalence of five resistors that"
             " are in a complex network.  Operators include \'+\' for"
             " series and \'|\' for parallel.") << endl;
-    cout << ("1. Resistance\n2. Capacitance\n3. Inductance\n0. Return");
+    cout << ("1. Resistance\n2. Capacitance\n3. Inductance\n0. Return to last menu");
     string choice;
     getline(cin, choice);
     switch(choice[0] - '0')
