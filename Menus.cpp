@@ -54,7 +54,7 @@ void menu()
             */
 	        break;
 	    case '9':
-            cout << Help::getHelp(currentModes.mainMode, currentModes.subMode);
+            Help::getHelp();
             break;
         case '0':
             currentModes.mainMode = OPTION;
@@ -75,7 +75,6 @@ void eqComponentSubmenu()
 	    << "1. Resistance" << endl
 	    << "2. Capacitance" << endl
 	    << "3. Inductance" << endl
-        << "9. Help" << endl
 	    << "0. Main Menu" << endl;
     getline(cin, subChoice);
     
@@ -90,10 +89,6 @@ void eqComponentSubmenu()
         case '3':
 	        currentModes.subMode = INDUCTANCE;
 	        break;
-        case '9':
-            currentModes.subMode = NONE;
-            cout << Help::getHelp(currentModes.mainMode, currentModes.subMode);
-            return;
         case '0':
             currentModes.subMode = NONE;
             currentModes.mainMode = MENU;
