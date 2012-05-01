@@ -152,7 +152,7 @@ void equivalent_component(EquivComponentParser& eqComponentParser)
 
 void divider()
 {
-    cout << "Enter the value of the source. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
+    cout << "Enter the value of the source in Volts. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
     string exp;
     getline(cin, exp);
 
@@ -164,12 +164,12 @@ void divider()
         
         sourceVal = strtod(exp.c_str(), NULL);
 
-        cout << "Enter the value of the first resistor" << endl;
+        cout << "Enter the value of the first resistor in ohms" << endl;
         getline(cin, exp);
 
         r1 = strtod(exp.c_str(), NULL);
 
-        cout << "Enter the value of the second resistor" << endl;
+        cout << "Enter the value of the second resistor in ohms" << endl;
         getline(cin,exp);
 
         r2 = strtod(exp.c_str(), NULL);
