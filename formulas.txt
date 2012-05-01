@@ -1,0 +1,122 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~COMMON ECE CONSTANTS AND FORMULAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+GENERAL
+~~~~~~~
+------------------------
+Power, Voltage, Current:
+------------------------
+Current(i) = dq / dt
+
+Voltage(V) = dw / dq
+
+Power(P) = dw / dt
+
+----------
+Ohm's Law:
+----------
+V = i * R
+
+-----------------
+Total Resistance:
+-----------------
+in series:  R(eq) = R1 + R2 + ... + R(n)
+
+in parallel:  R(eq) = [R1 * R2 * ... * R(n)] / [R1 + R2 + ... + R(n)]
+
+-----------------------------
+Current and Voltage Division:
+-----------------------------
+V1 = V(in) * R1 / [R1 + R2]
+
+I1 = I(in) * R2 / [R1 + R2]
+
+
+THEVENIN/NORTON CIRCUITS
+~~~~~~~~~~~~~~~~~~~~~~~~
+----------------
+Kirchoff's Laws:
+----------------
+Sum of voltage drops across a loop = 0V
+
+Current entering a node = Current exiting the node
+
+-----------------------
+Maximum Power Transfer:
+-----------------------
+P(load) = i(load) * R(load) or
+
+P(load)= [V(th) / [R(th) + R(load)]]^2 * R(load) * P(load-max)
+
+^^^ When R(load) = R(th) : P(load-max) = V(th)^2 / [4 * R(th)]
+
+% Decrease in power = [[P(load-max) - P(load)] / P(load-max)] * 100
+
+
+CAPACITORS AND INDUCTORS
+~~~~~~~~~~~~~~~~~~~~~~~~
+-----------
+Capacitors:
+-----------
+act like an open circuit in DC conditions
+
+C = Q / V
+
+C = E * A / D where:
+        
+        E = permittivity in air = 8.85e^-12 ; A = area of plate ; D = distance btw plates
+
+in series:  C(eq) = [C1 * C2 * ... * C(n)] / [C1 + C2 + ... + C(n)]
+
+in parallel:  C(eq) = C1 + C2 + ... + C(n)
+
+----------
+Inductors:
+----------
+act like a short circuit in DC conditions
+
+L = u * N^2 * A / l where:
+
+        N = # of turns ; u = permeability = pi * 4e^-7 ; A = cross section area ; l = length  of rod
+
+in series:  L(eq) = L1 + L2 + ... + L(n)
+
+in parallel:  L(eq) = [L1 * L2 * ... * L(n)] / [L1 + L2 + ... + L(n)]
+
+
+RLC CIRCUITS
+~~~~~~~~~~~~
+----------
+RL and RC:
+----------
+T = tau = R * C or L / R
+
+Vc(t) = Vc(final) + [Vc(initial) + Vc(final)] * e^[-[t-t(0)] / T]
+
+----
+RLC:
+----
+w(0) = [1 / [L * C]] ^ [1 / 2]
+
+in series:  a = R / [2 * L]
+
+in parallel:  a = 1 / [2 * R * C]
+
+----------------------
+Overdamped [a > w(0)]:
+----------------------
+s1 = -a + [a^2 - w(0)^2] ^ [1 / 2] ; s2 = -a - [a^2 - w(0)^2] ^ [1 / 2]
+
+Vc(t) = A1 * e^[s1 * t] + A2 * e^[s2 * t] + Vs
+
+------------------------------
+Critically Damped [ a = w(0)]:
+------------------------------
+Vc(t) = [A1 + A2 * t] * e^[-a * t] + Vs
+
+-----------------------
+Underdamped [a < w(0)]:
+-----------------------
+wd = [w(0)^2 - a^2] ^ [1 / 2]
+
+Vc(t) = [A1 * cos[wd * t] + A2 * sin[wd * t]] * e^[-a * t] + Vs
+
