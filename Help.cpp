@@ -15,6 +15,7 @@ void getDividerHelp();
 void getConvHelp();
 void getFormulaHelp();
 void getOptionHelp();
+void getCommandLineHelp();
 
 //Current calculator mode that the user is in.
 MAIN_MODE helpMode;
@@ -53,8 +54,10 @@ void getHelp()
             case OPTION:
                 getOptionHelp();
                 break;
-            default:
+            case EXIT:
                 return;
+            default:
+                getCommandLineHelp();
         }
     }
     
@@ -70,17 +73,14 @@ void getMenuHelp()
     cout <<("\nThe ECE Calculator is a dynamic tool used with many uses ranging"
             "from .  The following menu allows you to get help for specific ECE "
             "Calculator modes.\n\n");
-    
-    
-    
-    helpMode = EQ_COMPONENT;
+    helpMainMenu(helpMode);    
 }
 
 //Return help corresponding to the scientific calculator mode.
 void getSciHelp()
 {
     cout << "Scientific Calculator Help";
-    helpMode = EQ_COMPONENT;
+    helpMode = MENU;
 }
 
 //Return help corresponding to the equivalence component mode.
@@ -126,30 +126,36 @@ void getEquivHelp()
                 break;
         }
         waitForUser();
+        cout << endl;
     }
 }
 
 void getDividerHelp()
 {
     cout << "Divider Help";
-    helpMode = EQ_COMPONENT;
+    helpMode = MENU;
 }
 
 void getConvHelp()
 {
     cout << "Conversion Help";
-    helpMode = EQ_COMPONENT;
+    helpMode = MENU;
 }
     
 void getFormulaHelp()
 {
     cout << "Formula Help";
-    helpMode = EQ_COMPONENT;
+    helpMode = MENU;
 }
 
 void getOptionHelp()
 {
     cout << "Option Help";
-    helpMode = EQ_COMPONENT;
+    helpMode = MENU;
 }
 
+void getCommandLineHelp()
+{
+    cout << "Command line help";
+    helpMode = MENU;
+}

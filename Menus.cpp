@@ -172,34 +172,32 @@ void helpMainMenu(MAIN_MODE& helpMode)
 {
     cout << ("1. Scientific Calculator\n2. Equivalent Component\n3. Voltage and"
             "Current dividers\n4. Prefix Conversions\n5. Formula Sheet\n6. Options\n"
-            "7. Command line arguments\n0. Exit \"Help\"");
+            "7. Command line arguments\n0. Exit \"Help\"\n");
     string choice;
     getline(cin, choice);
     switch(choice[0] - '0')
     {
-        case MENU:
-            helpMode = MENU;
-            break;
-        case SCI_CALC:
+        case 1:
             helpMode = SCI_CALC;
             break;
-        case EQ_COMPONENT:
+        case 2:
             helpMode = EQ_COMPONENT;
             break;
-        case DIVIDER:
+        case 3:
             helpMode = DIVIDER;
             break;
-        case CONVERSION:
+        case 4:
             helpMode = CONVERSION;
             break;
-        case FORMULA:
+        case 5:
             helpMode = FORMULA;
             break;
-        case OPTION:
+        case 6:
             helpMode = OPTION;
             break;
-        default:
+        case 0:
             helpMode = EXIT;
+            
     }    
 }
 
