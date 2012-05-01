@@ -18,28 +18,30 @@ struct FORMULAS
 
 string readCategory(ifstream& file, string category)
 {
-    string startDelimter = "<start of ";
-    string endDelimiter = "<end of";
+    string startDelimter = "<start ";
+    string endDelimiter = "<end ";
     string formulas = "";
     bool reading = false;
+    
     string line;
     getline(file, line);
     
     while (file)
     {
-        if (reading)
+        if (line.find(endDelimiter + category) != string::npos)
         {
-            formulas += line;
+            break;
+        }
+        else if (reading)
+        {
+            formulas += line + '\n';
         }
         else if (line.find(startDelimter + category) != string::npos)
         {
             reading = true;
         }
-        else if (line.find(endDelimiter + category) != string::npos)
-        {
-            reading = false;
-            break;
-        }
+   
+        getline(file, line);
     }
     return formulas;
 }
@@ -54,7 +56,26 @@ void readFormulas()
     formulaLists.rlc_circuits = readCategory(in, "RLC circuits");
 }
 
-void printFormulas()
+void printFormulas(int category)
 {
-    cout << formulaLists.general + formulaLists.thevenin + formulaLists.cap_ind + formulaLists.rlc_circuits;
+    switch (category)
+    {
+        case 1:
+            cout << formulaLists.general << endl;
+            break;
+        case 2:
+            cout << formulaLists.thevenin << endl;
+            break;
+        case 3:
+            cout << formulaLists.cap_ind << endl;
+            break;
+        case 4:
+            cout << formulaLists.rlc_circuits << endl;
+            break;
+        default:
+            cout << formulaLists.general << formulaLists.thevenin 
+                 << formulaLists.cap_ind << formulaLists.rlc_circuits << endl;
+            break;
+    }
+    
 }

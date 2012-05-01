@@ -1,6 +1,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~COMMON ECE CONSTANTS AND FORMULAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <start general>
+
 GENERAL
 ~~~~~~~
 ------------------------
@@ -40,6 +41,7 @@ Current entering a node = Current exiting the node
 <end general>
 
 <start thevenin>
+
 THEVENIN/NORTON CIRCUITS
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -56,6 +58,7 @@ P(load)= [V(th) / [R(th) + R(load)]]^2 * R(load) * P(load-max)
 <end thevenin>
 
 <start capacitors and inductors>
+
 CAPACITORS AND INDUCTORS
 ~~~~~~~~~~~~~~~~~~~~~~~~
 -----------
@@ -88,6 +91,7 @@ in parallel:  L(eq) = [L1 * L2 * ... * L(n)] / [L1 + L2 + ... + L(n)]
 <end capacitors and inductors>
 
 <start RLC circuits>
+
 RLC CIRCUITS
 ~~~~~~~~~~~~
 ----------

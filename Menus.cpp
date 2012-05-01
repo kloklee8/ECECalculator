@@ -201,11 +201,35 @@ void helpMainMenu(MAIN_MODE& helpMode)
     }    
 }
 
-
+int formulaMenu()
+{
+    cout << "Select a category of formulas:" << endl
+         << "1. Basic Circuit Laws" << endl
+         << "2. Thevenin and Norton Equivalent Circuits" << endl
+         << "3. Capacitors and Inductors" << endl
+         << "4. RLC Circuits" << endl
+         << "5. All" << endl
+         << "0. Main Menu" << endl;
+    string choice;
+    getline(cin, choice);
+    
+    if (choice[0] == '0')
+    {
+        currentModes.mainMode = MENU;
+        return 0;
+    }
+    
+    if (choice[0] < '0' || choice[0] > '5')
+    {
+        return -1;
+    }
+    
+    return (choice[0] - '0');
+}
 
 void waitForUser()
 {
-    cout << "Enter any key to continue.";
+    cout << "Enter any key to continue. ";
     string garbage;
     getline(cin, garbage);
 }

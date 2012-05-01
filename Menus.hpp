@@ -10,4 +10,6 @@ void prefixMenu();
 void waitForUser();
 void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode);
 void helpMainMenu(MAIN_MODE& helpMode);
+int formulaMenu();
+
 #endif

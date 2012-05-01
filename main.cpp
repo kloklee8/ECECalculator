@@ -65,9 +65,12 @@ int main(int argc, char* argv[])
                 break;
             case FORMULA:
             {
-                printFormulas();
-                waitForUser();
-                currentModes.mainMode = MENU;
+                int choice = formulaMenu();
+                if (choice != 0)
+                {
+                    printFormulas(choice);
+                    waitForUser();
+                }
                 break;
             }
             case OPTION:
