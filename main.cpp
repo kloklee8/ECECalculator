@@ -1,33 +1,37 @@
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
-#include <cmath>
-#include "ExpressionParser.hpp"
+#include <string>
 #include "SciCalcParser.hpp"
 #include "EquivComponentParser.hpp"
-#include "enum.hpp"
-#include "Help.hpp"
 #include "Divider.hpp"
 #include "PrefixConverter.hpp"
-#include "Menus.hpp"
 #include "Formulas.hpp"
+#include "enum.hpp"
+#include "Help.hpp"
+#include "Menus.hpp"
 #include "CalculationHandler.hpp"
 
 using std::cout;
 using std::cin;
 using std::endl;
+using std::fixed;
+using std::setprecision;
+using std::scientific;
+using std::string;
 
 MODES currentModes;
 OPTIONS currentOptions;
 
-bool processCommandLineArguments(int argc, const char* argv[], SciCalcParser& calcParser);
+bool processCommandLineArguments(int argc, char* argv[], SciCalcParser& calcParser);
 
-int main(int argc, const char* argv[])
+int main(int argc, char* argv[])
 {
     currentModes.mainMode = MENU;
     currentModes.subMode = NONE;
     
-    setOptions(RADIAN, true, -1, false);
+    setOptions(RADIAN, false, -1, false);
+    readFormulas();
     
     SciCalcParser calcParser;
     EquivComponentParser eqComponentParser;
@@ -77,30 +81,48 @@ int main(int argc, const char* argv[])
     return 0;
 }
 
-bool processCommandLineArguments(int argc, const char* argv[], SciCalcParser& calcParser)
+bool processCommandLineArguments(int argc, char* argv[], SciCalcParser& calcParser)
 {
     // TODO: Implement command lines
-    for (int i = 0; i < argc; i++)
+    for (int i = 1; i < argc; i++)
     {
-        if (argv[i] == "-a")
+        if (string(argv[i]) == "--degrees" || string(argv[i]) == "-d")
         {
-            
+            currentOptions.angleMode = DEGREE;
+            calcParser.setAngleMode(currentOptions.angleMode);
         }
-        else if (argv[i] == "-h")
+        else if (string(argv[i]) == "--help" || string(argv[i]) == "-h")
         {
-        
+            currentOptions.helpDisplay = true;
         }
-        else if (argv[i] == "-p")
+        else if (string(argv[i]) == "--precision" || string(argv[i]) == "-p")
         {
-        
+            i++;
+            if (i == argc)
+            {
+                cout << "Error: Must specify precision after --precision or -p";
+                return false;
+            }
+            int prec = atoi(argv[i]);
+            if (prec <= 0 || prec > 15)
+            {
+                cout << "Error: Precision must be between 1 and 15, inclusive." << endl;
+                return false;
+            }
+            else
+            {
+                currentOptions.precision = prec;
+                cout << setprecision(currentOptions.precision);
+            }
         }
-        else if (argv[i] == "-s")
+        else if (string(argv[i]) == "--scientific" || string(argv[i]) == "-s")
         {
-        
+            currentOptions.scientificNotation = true;
+            cout << scientific << setprecision(currentOptions.precision);
         }
         else
         {
-            cout << "Error: Invalid switch" << endl;
+            cout << "Error: Invalid command line arguments" << endl;
             return false;
         }
     }

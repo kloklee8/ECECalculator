@@ -14,6 +14,7 @@ using std::endl;
 using std::ios;
 using std::fixed;
 using std::scientific;
+using std::getline;
 
 extern MODES currentModes;
 extern OPTIONS currentOptions;
@@ -181,7 +182,6 @@ void options(SciCalcParser& calcParser)
                 getline(cin, newPrecision);
                 if (newPrecision[0] == 'd')
                 {
-                    cout.unsetf(ios::fixed);
                     cout << setprecision(32);
                     currentOptions.precision = -1;
                     break;
@@ -194,20 +194,31 @@ void options(SciCalcParser& calcParser)
                 else
                 {
                     currentOptions.precision = newPrec;
-                    cout << fixed << setprecision(currentOptions.precision);
+                    if (!currentOptions.scientificNotation)
+                    {
+                        cout << fixed;
+                    }
+                    cout << setprecision(currentOptions.precision);
                 }
                 break;
             }
             case '4':
+            {
                 currentOptions.scientificNotation = !(currentOptions.scientificNotation);
                 if (currentOptions.scientificNotation)
                 {
-                    cout << scientific;
+                    cout << scientific << setprecision(currentOptions.precision);
                 }
                 else
                 {
                     cout.unsetf(ios::scientific);
+                    if (currentOptions.precision != -1)
+                    {
+                        cout << fixed << setprecision(currentOptions.precision);
+                    }
                 }
+                break;
+            }
             case '0':
                 currentModes.mainMode = MENU;
                 currentModes.subMode = NONE;
