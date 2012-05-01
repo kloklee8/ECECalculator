@@ -23,6 +23,7 @@ private:
     static void getConvHelp();
     static void getFormulaHelp();
     static void getOptionHelp();
+    static void pressAny();
 };
 
 #endif
