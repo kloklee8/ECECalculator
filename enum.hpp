@@ -44,4 +44,18 @@ enum ANGLE
     RADIAN
 };
 
+struct MODES
+{
+    MAIN_MODE mainMode;
+    SUB_MODE subMode;
+};
+
+struct OPTIONS
+{
+    ANGLE angleMode;
+    // if true, display help on entrance to each mode. If false, only display help at beginning of program.
+    bool helpDisplay; // TODO: Implement help toggling
+    int precision;
+};
+
 #endif
