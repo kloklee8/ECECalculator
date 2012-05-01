@@ -46,11 +46,8 @@ void menu()
 	        prefixMenu();
 	        break;
 	    case '5':
-	        /* TODO: Design formula sheets with three submenu choices:
-                    -common constants
-                    -Ohm's Law, voltage/current division, power, other common ECE formulas
-                    -Basic op-amp circuits (summing, difference, inverting, differential, integrating, etc.) formulas
-            */
+	        currentModes.mainMode = FORMULA;
+	        currentModes.subMode = NONE;
 	        break;
 	    case '9':
             getHelp();
