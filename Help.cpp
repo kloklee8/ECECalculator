@@ -1,39 +1,86 @@
 #include "Help.hpp"
 
-string Help::getHelp(MAIN_MODE mode, SUB_MODE submode)
+//Current calculator mode that the user is in.
+enum HELP_MENU_MODE
 {
-    string help = "";
-    switch (mode)
+    MENU,
+    SCI_CALC,
+    EQ_COMPONENT,
+    DIVIDER,
+    CONVERSION,
+    FORMULA,
+    OPTION,
+    EXIT
+} menuMode;
+
+//Modes that make up a MODE.  Put all sub-modes here, 
+//no matter which mode your in.
+enum HELP_MENU_SUB_MODE
+{
+    NONE,
+    RESISTANCE,
+    CAPACITANCE,
+    INDUCTANCE,
+    
+    CURRENT,
+    VOLTAGE
+} menuSubMode;
+
+void Help::getHelp()
+{
+    string input = "";
+    menuMode = MENU;
+    //getline(cin, input);
+    //(input[0] != 'm' && exp[0] != 'q')
+    while (1)
     {
-        case MENU:
-            getMenuHelp(help);
-            break;
-        case SCI_CALC:
-            getSciHelp(help);
-            break;
-        case EQ_COMPONENT:
-            getEquivHelp(help, submode);
-            break;
+        string help = "Looking for help?  Choose from the following topics you wish"
+                        "to find more information about: ";
+        switch (HELP_MENU_MODE)
+        {
+            case MENU:
+                getMenuHelp();
+                break;
+            case SCI_CALC:
+                getSciHelp();
+                break;
+            case EQ_COMPONENT:
+                getEquivHelp();
+            case DIVIDER:
+                getDividerHelp();
+                break;
+            case CONVERSION:
+                getConvHelp();
+                break;
+            case FORMULA:
+                getFormulaHelp();
+            case OPTIONS:
+                getOptionHelp();
+                break;
+            default:
+                return;
+        }
     }
-    help += "\n";
-    return help;
+    
+    
+    
 }
 
 //Return help corresponding to the menu screen and how to use the entire 
 //calculator.
-void Help::getMenuHelp(string& help)
+void Help::getMenuHelp()
 {
     help += "Menu help:";
 }
 
 //Return help corresponding to the scientific calculator mode.
-void Help::getSciHelp(string& help)
+void Help::getSciHelp()
 {
     help += "Scientific Calculator help:";
 }
 
 //Return help corresponding to the equivalence component mode.
-void Help::getEquivHelp(string& help, SUB_MODE submode)
+void Help::getEquivHelp()
 {
     switch (submode) 
     {

@@ -14,11 +14,15 @@ using std::string;
 class Help
 {
 public:
-    static string getHelp(MAIN_MODE mode, SUB_MODE submode);
+    static string getHelp();
 private:
-    static void getMenuHelp(string&);
-    static void getSciHelp(string&);
-    static void getEquivHelp(string&, SUB_MODE submode);
+    static void getMenuHelp();
+    static void getSciHelp();
+    static void getEquivHelp();
+    static void getDividerHelp();
+    static void getConvHelp();
+    static void getFormulaHelp();
+    static void getOptionHelp();
 };
 
 #endif
