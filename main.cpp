@@ -24,9 +24,11 @@ using std::fixed;
 using std::setprecision;
 
 MODES currentModes;
-OPTIONS currentOptions;	
+OPTIONS currentOptions;
 
-int main()
+bool processCommandLineArguments(int argc, const char* argv[], SciCalcParser& calcParser);
+
+int main(int argc, const char* argv[])
 {
     currentModes.mainMode = MENU;
     currentModes.subMode = NONE;
@@ -35,6 +37,14 @@ int main()
     
     SciCalcParser calcParser;
     EquivComponentParser eqComponentParser;
+    
+    if (argc > 1)
+    {
+        if (!(processCommandLineArguments(argc, argv, calcParser)))
+        {
+            return 1;
+        }
+    }
 
     while (currentModes.mainMode != EXIT)
     {
@@ -72,4 +82,32 @@ int main()
     return 0;
 }
 
-
+bool processCommandLineArguments(int argc, const char* argv[], SciCalcParser& calcParser)
+{
+    // TODO: Implement command lines
+    for (int i = 0; i < argc; i++)
+    {
+        if (argv[i] == "-a")
+        {
+            
+        }
+        else if (argv[i] == "-h")
+        {
+        
+        }
+        else if (argv[i] == "-p")
+        {
+        
+        }
+        else if (argv[i] == "-s")
+        {
+        
+        }
+        else
+        {
+            cout << "Error: Invalid switch" << endl;
+            return false;
+        }
+    }
+    return true;
+}
