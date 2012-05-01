@@ -147,7 +147,7 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
             " want to know the equivalence of five resistors that"
             " are in a complex network.  Operators include \'+\' for"
             " series and \'|\' for parallel.") << endl;
-    cout << ("1. Resistance\n2. Capacitance\n3. Inductance\n0. Return to last menu");
+    cout << ("1. Resistance\n2. Capacitance\n3. Inductance\n0. Return to last menu\n");
     string choice;
     getline(cin, choice);
     switch(choice[0] - '0')
@@ -163,11 +163,47 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
             break;
         case 0:
             helpMode = MENU;
+            helpSubMode = NONE;
             break;
     }
     
     
     
+}
+
+void helpMainMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
+{
+    cout << ("1. Scientific Calculator\n2. Equivalent Component\n3. Voltage and"
+            "Current dividers\n4. Prefix Conversions\n5. Formula Sheet\n6. Options\n"
+            "7. Command line arguments\n0. Exit \"Help\"");
+    string choice;
+    getline(cin, choice);
+    switch(choice[0] - '0')
+    {
+        case MENU:
+            helpMode = MENU;
+            break;
+        case SCI_CALC:
+            helpMode = SCI_CALC;
+            break;
+        case EQ_COMPONENT:
+            helpMode = EQ_COMPONENT;
+            break;
+        case DIVIDER:
+            helpMode = DIVIDER;
+            break;
+        case CONVERSION:
+            helpMode = CONVERSION;
+            break;
+        case FORMULA:
+            helpMode = FORMULA;
+            break;
+        case OPTION:
+            helpMode = OPTION;
+            break;
+        default:
+            helpMode = EXIT;
+    }    
 }
 
 

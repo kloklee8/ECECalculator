@@ -15,7 +15,6 @@ void getDividerHelp();
 void getConvHelp();
 void getFormulaHelp();
 void getOptionHelp();
-void pressAny();
 
 //Current calculator mode that the user is in.
 MAIN_MODE helpMode;
@@ -67,8 +66,13 @@ void getHelp()
 //calculator.
 void getMenuHelp()
 {
-    cout <<("Looking for help?  Choose from the following topics you wish"
-                        "to find more information about: ");
+    // TODO: Type up nice description.
+    cout <<("\nThe ECE Calculator is a dynamic tool used with many uses ranging"
+            "from .  The following menu allows you to get help for specific ECE "
+            "Calculator modes.\n\n");
+    
+    
+    
     helpMode = EQ_COMPONENT;
 }
 
@@ -98,7 +102,7 @@ void getEquivHelp()
                         " resistor 1 (1 ohms)is in series with the parallel combination of"
                         " resistor 2 (2 ohms) and 3 (3 ohms), the following syntax can be used"
                         " to determine the equivalent resistance:\n"
-                        " .001 + .002|.003");
+                        " .001 + .002|.003\n");
                 break;
             case CAPACITANCE:
                 cout << ("Equivalent Capacitance help: \nThis mode is used to" 
@@ -108,7 +112,7 @@ void getEquivHelp()
                         " capacitor 1 (1mF)is in series with the parallel combination of"
                         " capacitor 2 (2mF) and 3 (3mF), the following syntax can be used"
                         " to determine the equivalent capacitance:\n"
-                        " .001 + .002|.003");
+                        " .001 + .002|.003\n");
                 break;
             case INDUCTANCE:
                 cout << ("Equivalent Inductance help: \nThis mode is used to" 
@@ -118,10 +122,10 @@ void getEquivHelp()
                         " inductor 1 (1mH)is in series with the parallel combination of"
                         " inductor 2 (2mH) and 3 (3mH), the following syntax can be used"
                         " to determine the equivalent inductance:\n"
-                        " .001 + .002|.003");
+                        " .001 + .002|.003\n");
                 break;
         }
-        pressAny();
+        waitForUser();
     }
 }
 
@@ -149,8 +153,3 @@ void getOptionHelp()
     helpMode = EQ_COMPONENT;
 }
 
-void pressAny()
-{
-    cout << "\n\nPress any key to return to the previous menu." << endl;
-    waitForUser();
-}
