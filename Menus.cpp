@@ -92,7 +92,7 @@ void eqComponentSubmenu()
         default:
 	        currentModes.subMode = NONE;
     }
-    cout << "Enter an equivalent expression to calculate. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
+    cout << "Enter an equivalent expression to calculate.  Use '+' for series and '|' for parallel Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
 }
 
 void dividerSubmenu()
