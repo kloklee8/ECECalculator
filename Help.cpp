@@ -56,6 +56,7 @@ void getHelp()
                 getCommandLineHelp();
                 break;
             default:
+                cout << "\nExited help, returning to ECE Calculator...\n\n\n";
                 return;
         }
     }
@@ -66,10 +67,6 @@ void getHelp()
 //calculator.
 void getMenuHelp()
 {
-    // TODO: Type up nice description.
-    cout <<("\nThe ECE Calculator is a dynamic tool used with many uses ranging"
-            "from .  The following menu allows you to get help for specific ECE "
-            "Calculator modes.\n\n");
     helpMainMenu(helpMode);    
 }
 
@@ -77,7 +74,7 @@ void getMenuHelp()
 void getSciHelp()
 {
     // TODO: Type up nice description.
-    cout << "Scientific Calculator Help:";
+    cout << endl << "Scientific Calculator Help:";
     
     waitForUser();
     helpMode = MENU;
@@ -121,7 +118,7 @@ void getEquivHelp()
                      << "   This mode is used to determine the equivalence of multiple" << endl 
                      << "   inductor components that are in series or parallel." << endl
                      << "   Operators include \'+\' for series and \'|\' for parallel." << endl
-                     << "   For example, if inductor 1 (1mH) is in series with the parallel combination of" << endl
+                     << "   For example, if  inductor 1 (1mH) is in series with the parallel combination of" << endl
                      << "   inductor 2 (2mH) and 3 (3mH), the following syntax can be used" << endl
                      << "   to determine the equivalent inductance:\n"
                      << "   .001 + .002|.003\n";
@@ -130,16 +127,17 @@ void getEquivHelp()
         
         waitForUser();
         cout << endl;
+        helpSubMode = NONE;
     }
 }
 
 void getDividerHelp()
 {
-    cout << "Divider Help:" << endl
-         << "   The divider can be used to calculate the both the" << endl
-         << "   curent division across two parallel resistors and" << endl
-         << "   the voltage division across two resistors in series." << endl
-         << "   Upon entering the division mode, you will be prompted" << endl
+    cout << endl << "Divider Help:" << endl
+         << "   The Divider mode is used to calculate either" << endl
+         << "   current division across two parallel resistors or" << endl
+         << "   voltage division across two resistors in series." << endl
+         << "   Upon entering, you will be prompted" << endl
          << "   to choose one of the two calculations. The calculator will" << endl
          << "   then prompt you to enter the source value and the values " << endl
          << "   of the two resistors. The division across both resistors is displayed." << endl << endl
@@ -152,12 +150,12 @@ void getDividerHelp()
 
 void getConvHelp()
 {
-    cout << "Conversion Help:" << endl
+    cout << endl << "Conversion Help:" << endl
          << "   This mode is used to convert between two unit prefixes." << endl
          << "   The following are the supported units:" << endl;
     prefixMenu();
     cout << "   When entering this mode, you will be prompted to enter the unit" << endl
-         << "   (with the correspoding menu #) to convert from, the unit to convert to," << endl
+         << "   (with the corresponding menu #) to convert from, the unit to convert to," << endl
          << "   and the value to convert." << endl;
          
     waitForUser();
@@ -166,7 +164,7 @@ void getConvHelp()
     
 void getFormulaHelp()
 {
-    cout << "Formula Help:" << endl
+    cout << endl << "Formula Help:" << endl
          << "   The formula mode displays common formulas and constants used in ECE," << endl
          << "   particularly those used in analyzing circuits. When entering this mode," << endl
          << "   you will be prompted to choose which category of formulas you would" << endl
@@ -179,7 +177,7 @@ void getFormulaHelp()
 
 void getOptionHelp()
 {
-    cout << "Option Help:" << endl
+    cout << endl << "Option Help:" << endl
          << "   The options menu allow you to configure the operation of the calculator." << endl
          << "   Among the options are:" << endl
          << "       1. Angle Units: [radians, degrees]" << endl
@@ -195,7 +193,7 @@ void getOptionHelp()
 
 void getCommandLineHelp()
 {
-    cout << "Command Line Help:" << endl
+    cout << endl << "Command Line Help:" << endl
          << "   There are three command line switches available, most corresponding" << endl
          << "   to an option in the option menu." << endl << endl
          << "       -d, --degrees" << endl
