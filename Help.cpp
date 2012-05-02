@@ -73,9 +73,58 @@ void getMenuHelp()
 //Return help corresponding to the scientific calculator mode.
 void getSciHelp()
 {
-    // TODO: Type up nice description.
-    cout << endl << "Scientific Calculator Help:";
-    
+    cout << endl << "Scientific Calculator Help:" << endl
+         << "   The scientific calculator is similar to any basic scientific calculator you have used." << endl
+         << "   You enter an expression, and the result from the calculations will be displayed." << endl << endl
+         << "   The features you can use in the calculator includes:" << endl
+         << "       ------------------------------------------------------------------------------------------------" << endl
+         << "       Evaluate basic expressions involving positive and negative numbers, and the following operators:" << endl
+         << "       ------------------------------------------------------------------------------------------------" << endl
+         << "           -addition: +" << endl
+         << "           -subtraction: -" << endl
+         << "           -multiplication: *" << endl
+         << "           -division: /" << endl
+         << "           -integer modulus: %" << endl
+         << "           -exponents: ^" << endl << endl
+         << "           Note:Any combination can be included in one expression. Parentheses are supported." << endl
+         << "               Example: (5 + 3) * (10/2) - 2 + 5^2" << endl << endl
+         << "       ---------------------------------" << endl
+         << "       Evaluate the following functions:" << endl
+         << "       ---------------------------------" << endl
+         << "           Function            Word to use     Example" << endl
+         << "           --------            -----------     -------" << endl
+         << "           -sine               sin(x)          sin(3.14)" << endl
+         << "           -cosine             cos(x)          cos(0)" << endl
+         << "           -tangent            tan(x)          tan(-45)" << endl
+         << "           -inverse sine       arcsin(x)       arcsin(0)" << endl
+         << "           -inverse cosine     arccos(x)       arccos(0.5)" << endl
+         << "           -inverse tangent    arctan(x)       arctan(1)" << endl
+         << "           -logarithm base 10  log(x)          log(95)" << endl
+         << "           -natural logarithm  ln(x)           ln(2.7)" << endl
+         << "           -exponential (e^x)  exp(x)          exp(4)" << endl
+         << "           -square root        sqrt(x)         sqrt(49)" << endl
+         << "           -factorial          fact(x)         fact(5)" << endl
+         << "           -absolute value     abs(x)          abs(-9)" << endl
+         << "           -floor              floor(x)        floor(8.85)" << endl
+         << "           -ceiling            ceil(x)         ceil(7.28)" << endl << endl
+         << "           Notes: " << endl
+         << "               -x can be either a number or an expression as specified in the previous bullet." << endl
+         << "               -Any of the functions can be combined into one expression, as in the previous bullet." << endl
+         << "                   Example: 2 * sin(3.14 / 4) + sqrt(95 + 5)" << endl
+         << "               -The default units for the trig functions is radians." << endl
+         << "                   To change to degrees, go to Options via the main menu, run this application" << endl
+         << "                   with the -d switch. See the Help documentation via the main menu for more information." << endl << endl
+         << "       -------------------------" << endl
+         << "       ***ADDITIONAL FEATURES***" << endl
+         << "       -------------------------" << endl
+         << "           -To use the value of the previous answer, use the # sign." << endl
+         << "               Example: " << endl
+         << "                   10 + 2" << endl
+         << "                   =12" << endl
+         << "                   # * 4" << endl
+         << "                   =48" << endl
+         << "           -To use the constant pi, enter \"p\". Example: cos(p), tan(-p)" << endl << endl;
+         
     waitForUser();
     helpMode = MENU;
 }
