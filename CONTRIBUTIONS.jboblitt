@@ -1,0 +1,17 @@
+Justin Boblitt
+5/1/12
+
+My contributions to the ECE Calculator include the following:
+
+      1. Design of overrall calculator (entire team credited).
+            a. What modes we could and could not support
+            b. How we could evaluate a string expression entered by the user.
+            c. What kind of class structure we could use to represent the calculator.
+            d. How to keep functions short and simple that perform singular tasks.
+      2. Equivalence Component section.
+            a. Allowed user to find the equivalence of complex parallel and series networks of resistors, capacitors, and inductors.
+      3. Designes and implemented help support.
+            a. Includes the state machine structure that keeps the user within help and navigates him/her through various menus.
+            b. Includes the help message that is mentioned for the Equivalence Component section.
+            c. The authors of each calculator mode typed up a help statement for their particular mode and how to use it.
+      4. Code cleaning and message formating. Any last second code separation.
