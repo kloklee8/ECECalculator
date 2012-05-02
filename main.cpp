@@ -101,9 +101,9 @@ bool processCommandLineArguments(int argc, char* argv[], SciCalcParser& calcPars
                 return false;
             }
             int prec = atoi(argv[i]);
-            if (prec <= 0 || prec > 15)
+            if (prec < 0 || prec > 15)
             {
-                cout << "Error: Precision must be between 1 and 15, inclusive." << endl;
+                cout << "Error: Precision must be between 0 and 15, inclusive." << endl;
                 return false;
             }
             else
@@ -120,6 +120,10 @@ bool processCommandLineArguments(int argc, char* argv[], SciCalcParser& calcPars
         {
             currentOptions.scientificNotation = true;
             cout << scientific << setprecision(currentOptions.precision);
+        }
+        else if (string(argv[i]) == "--help" || string(argv[i]) == "-h")
+        {
+            getHelp();
         }
         else
         {

@@ -60,9 +60,6 @@ void getHelp()
                 getCommandLineHelp();
         }
     }
-    
-    
-    
 }
 
 //Return help corresponding to the menu screen and how to use the entire 
@@ -79,7 +76,9 @@ void getMenuHelp()
 //Return help corresponding to the scientific calculator mode.
 void getSciHelp()
 {
-    cout << "Scientific Calculator Help";
+    cout << "Scientific Calculator Help:";
+    
+    waitForUser();
     helpMode = MENU;
 }
 
@@ -95,34 +94,34 @@ void getEquivHelp()
         switch (helpSubMode) 
         {
             case RESISTANCE:
-                cout << ("Equivalent Resistance help: \nThis mode is used to" 
-                        " determine the equivalence of multiple resistor components"
-                        " that are in series or parallel.  Operators include \'+\' for"
-                        " series and \'|\' for parallel.  For example, if "
-                        " resistor 1 (1 ohms)is in series with the parallel combination of"
-                        " resistor 2 (2 ohms) and 3 (3 ohms), the following syntax can be used"
-                        " to determine the equivalent resistance:\n"
-                        " .001 + .002|.003\n");
+                cout << "Equivalent Resistance help: \n"
+                     << "   This mode is used to determine the equivalence of multiple" << endl
+                     << "   resistor components that are in series or parallel." << endl
+                     << "   Operators include \'+\' for series and \'|\' for parallel." << endl
+                     << "   For example, if resistor 1 (1 ohms) is in series with the parallel combination of" << endl
+                     << "   resistor 2 (2 ohms) and 3 (3 ohms), the following syntax can be used" << endl
+                     << "   to determine the equivalent resistance:" << endl
+                     << "       1 + 2|3\n";
                 break;
             case CAPACITANCE:
-                cout << ("Equivalent Capacitance help: \nThis mode is used to" 
-                        " determine the equivalence of multiple capacitor components"
-                        " that are in series or parallel.  Operators include \'+\' for"
-                        " series and \'|\' for parallel.  For example, if "
-                        " capacitor 1 (1mF)is in series with the parallel combination of"
-                        " capacitor 2 (2mF) and 3 (3mF), the following syntax can be used"
-                        " to determine the equivalent capacitance:\n"
-                        " .001 + .002|.003\n");
+                cout << "Equivalent Capacitance help: \n"
+                     << "   This mode is used to determine the equivalence of multiple" << endl
+                     << "   capacitor components that are in series or parallel." << endl
+                     << "   Operators include \'+\' for series and \'|\' for parallel." << endl
+                     << "   For example, if capacitor 1 (1mF) is in series with the parallel combination of" << endl
+                     << "   capacitor 2 (2mF) and 3 (3mF), the following syntax can be used" << endl
+                     << "   to determine the equivalent capacitance:\n"
+                     << "   .001 + .002|.003\n";
                 break;
             case INDUCTANCE:
-                cout << ("Equivalent Inductance help: \nThis mode is used to" 
-                        " determine the equivalence of multiple inductor components"
-                        " that are in series or parallel.  Operators include \'+\' for"
-                        " series and \'|\' for parallel.For example, if "
-                        " inductor 1 (1mH)is in series with the parallel combination of"
-                        " inductor 2 (2mH) and 3 (3mH), the following syntax can be used"
-                        " to determine the equivalent inductance:\n"
-                        " .001 + .002|.003\n");
+                cout << "Equivalent Inductance help: \n"
+                     << "   This mode is used to determine the equivalence of multiple" << endl 
+                     << "   inductor components that are in series or parallel." << endl
+                     << "   Operators include \'+\' for series and \'|\' for parallel." << endl
+                     << "   For example, if inductor 1 (1mH) is in series with the parallel combination of" << endl
+                     << "   inductor 2 (2mH) and 3 (3mH), the following syntax can be used" << endl
+                     << "   to determine the equivalent inductance:\n"
+                     << "   .001 + .002|.003\n";
                 break;
         }
         waitForUser();
@@ -132,30 +131,82 @@ void getEquivHelp()
 
 void getDividerHelp()
 {
-    cout << "Divider Help";
+    cout << "Divider Help:" << endl
+         << "   The divider can be used to calculate the both the" << endl
+         << "   curent division across two parallel resistors and" << endl
+         << "   the voltage division across two resistors in series." << endl
+         << "   Upon entering the division mode, you will be prompted" << endl
+         << "   to choose one of the two calculations. The calculator will" << endl
+         << "   then prompt you to enter the source value and the values " << endl
+         << "   of the two resistors. The division across both resistors is displayed." << endl << endl
+         << "   Note: The values of the sources must be in units of Volts or Amps," << endl
+         << "   and the value of the resistors must be in Ohms." << endl
+         << "   To exit the divider, either enter 'm' to return to the main menu or 'q' to quit the program." << endl;
+         
+    waitForUser();
     helpMode = MENU;
 }
 
 void getConvHelp()
 {
-    cout << "Conversion Help";
+    cout << "Conversion Help:" << endl
+         << "   This mode is used to convert between two unit prefixes." << endl
+         << "   The following are the supported units:" << endl;
+    prefixMenu();
+    cout << "   When entering this mode, you will be prompted to enter the unit" << endl
+         << "   (with the correspoding menu #) to convert from, the unit to convert to," << endl
+         << "   and the value to convert." << endl
+         << "   To exit the prefix converter, either enter 'm' to return to the main menu or 'q' to quit the program." << endl;
+         
+    waitForUser();
     helpMode = MENU;
 }
     
 void getFormulaHelp()
 {
-    cout << "Formula Help";
+    cout << "Formula Help:" << endl
+         << "   The formula mode displays common formulas and constants used in ECE," << endl
+         << "   particularly those used in analyzing circuits. When entering this mode," << endl
+         << "   you will be prompted to choose which category of formulas you would" << endl
+         << "   like to display. You may also choose to display all formulas" << endl
+         << "   or return to the main menu." << endl;
+    
+    waitForUser();
     helpMode = MENU;
 }
 
 void getOptionHelp()
 {
-    cout << "Option Help";
+    cout << "Option Help:" << endl
+         << "   The options menu allow you to configure the operation of the calculator." << endl
+         << "   Among the options are:" << endl
+         << "       1. Angle Units: [radians, degrees]" << endl
+         << "       2. Result Precision: [-1, 15], where -1 is the default " << endl
+         << "          and 1 to 15 inclusive is the number of digits after the decimal." << endl
+         << "       3. Scientific Notation: [On, Off], the format to display the answers." << endl << endl
+         << "   To change an option, enter the corresponding number to toggle." << endl
+         << "   Some options may prompt you to input the new setting." << endl;
+    
+    waitForUser();
     helpMode = MENU;
 }
 
 void getCommandLineHelp()
 {
-    cout << "Command line help";
+    cout << "Command Line Help:" << endl
+         << "   There are three command line switches available, most corresponding" << endl
+         << "   to an option in the option menu." << endl << endl
+         << "       -d, --degrees" << endl
+         << "           Set the angle units as degrees. Default is radians." << endl << endl
+         << "       -p, --precision [NUM]" << endl
+         << "           Set the precision of the answers displayed." << endl
+         << "           Takes one argument specifying the precision. 0 <= [NUM] <= 15" << endl
+         << "           Default is the maximum required to display the results (c++ default)" << endl << endl
+         << "       -s, --scientific" << endl
+         << "           Display answers in scientific notation. Default is standard decimal notation." << endl << endl
+         << "       -h, --help" << endl
+         << "           Starts the program to display the help menu first." << endl;
+    
+    waitForUser();
     helpMode = MENU;
 }

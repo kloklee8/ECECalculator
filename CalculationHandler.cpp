@@ -98,7 +98,8 @@ void equivalent_component(EquivComponentParser& eqComponentParser)
 
 void divider()
 {
-    cout << "Enter the value of the source in Volts. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
+    cout << "Enter the value of the source in " << ((currentModes.subMode == CURRENT) ? "Amps." : "Volts.")
+         << "Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
     string exp;
     getline(cin, exp);
 
@@ -183,9 +184,9 @@ void options(SciCalcParser& calcParser)
                     break;
                 }
                 int newPrec = atoi(newPrecision.c_str());
-                if (newPrec <= 0 || newPrec > 15)
+                if (newPrec < 0 || newPrec > 15)
                 {
-                    cout << "Error: Precision must be between 1 and 15, inclusive." << endl;
+                    cout << "Error: Precision must be between 0 and 15, inclusive." << endl;
                 }
                 else
                 {

@@ -17,7 +17,7 @@ void menu()
     cout << "1. Scientific Calculator" << endl
          << "2. Circuit Component Equivalence" << endl
          << "3. Current and Voltage Dividers" << endl
-         << "4. Convert Between Units" << endl
+         << "4. Convert Between Unit Prefixes" << endl
          << "5. Formulas" << endl
          << "9. Help" << endl
          << "0. Options" << endl
@@ -117,7 +117,7 @@ void dividerSubmenu()
             currentModes.subMode = NONE;
             break;
         default:
-            currentModes.subMode = NONE;
+            currentModes.subMode = VOLTAGE;
             break;
     }
 }
@@ -138,13 +138,12 @@ void prefixMenu()
 
 void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
 {
-    cout << ("\n\nEquivalent Component help: \nThis mode is used to"
-            " determine the equivalence of multiple circuit components"
-            " that are in series or parallel.  For example, you may "
-            " want to know the equivalence of five resistors that"
-            " are in a complex network.  Operators include \'+\' for"
-            " series and \'|\' for parallel.") << endl;
-    cout << ("1. Resistance\n2. Capacitance\n3. Inductance\n0. Return to last menu\n");
+    cout << "\n\nEquivalent Component help:" << endl
+         << "   This mode is used to determine the equivalence of multiple circuit components" << endl
+         << "   that are in series or parallel.  For example, you may want to know the " << endl
+         << "   equivalence of five resistors that are in a complex network." << endl
+         << "   Operators include \'+\' for series and \'|\' for parallel." << endl;
+    cout << "       1. Resistance\n       2. Capacitance\n       3. Inductance\n       0. Return to last menu\n";
     string choice;
     getline(cin, choice);
     switch(choice[0] - '0')
@@ -170,7 +169,7 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
 
 void helpMainMenu(MAIN_MODE& helpMode)
 {
-    cout << ("1. Scientific Calculator\n2. Equivalent Component\n3. Voltage and"
+    cout << ("1. Scientific Calculator\n2. Equivalent Component\n3. Voltage and "
             "Current dividers\n4. Prefix Conversions\n5. Formula Sheet\n6. Options\n"
             "7. Command line arguments\n0. Exit \"Help\"\n");
     string choice;
