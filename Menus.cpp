@@ -169,7 +169,6 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
 
 void helpMainMenu(MAIN_MODE& helpMode)
 {
-    // TODO: Type up nice description.
     cout << "\n\n~~~~Help Main Menu~~~~" << endl
          << "The ECE Calculator is a dynamic tool with many uses ranging" << endl
          << "from basic scientific calculations to voltage and current " << endl
