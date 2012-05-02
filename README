@@ -4,24 +4,57 @@ Justin Boblitt
 Chris Flatley
 Mark McNamee
 
-The purpose of the ECE Calculator is to provide a useful tool for analyzing circuits. It will consist of a standard calculator with options to convert between common units and prefixes used in ECE. The calculator will be able to evaluate boolean expressions. Also available will be common formulas used in ECE, such as Ohm's Law, Equivalent Series/Parallel combination, Capacitors and Inductors, etc.
+---------------------------
+********DESCRIPTION********
+---------------------------
 
-Each of the following operations will have its own header/cpp file
-*Scientific calculator
-    +, -, *, /, modulus, exponents, roots, log, sin/cos/trig, etc.
-*local memory and global memory8
-*conversions between prefixes and units
-*RLC equivalent calculators
-*Ohm's Law, voltage/current division, power, other common ECE functions
-*Basic op-amp circuits (summing, difference, inverting, differential, integrating, etc.) formulas and diagrams
-*RLC circuits - differential equations calculator
+The ECE Calculator is a dynamic tool with many uses ranging from a scientific calculator, to equivalent component calculations, to voltage and current divisions, and to unit conversions. In addition this quick-access application provides the user with a wide array of common ECE formulas and numerical constants.
 
-Need to create a tree to store operations
-Have settings such as display precision
+The following is a brief list of features currently included:
+    - Scientific Calculator: Basic scientific calculator to do basic operations, trig functions, etc.
+    - Equivalent Component: Calculate equivalent resistance, capacitance, or inductance.
+    - Voltage and Current dividers: Determine the division of voltage across series resistors or current across parallel resistors.
+    - Prefix Conversions: Convert between common prefixes including mega, kilo, milli, micro, nano, base, and more.
+    - Formula Sheet: A formula sheet containing common ECE formulas and constants. Divided into organized categories.
+    - Options: Allows for user-configurable options for certain calculator features.
+    - Command line arguments: User can start the calculator with the option they want, rather than going to the Options menu every time.
 
-Main program operation:
-    Display brief instructions
-    Ask user for which operation they would like to perform
-    User enters data for the operation
-    Display results
-    Loop back to top
+For an extensive description of each of these features, please refer to the Help documentation, accessed via the main menu upon running the application. The Help documentation can also be opened by running ECECalculator with the -h switch, ie "ECECalculator -h".
+
+
+--------------------------------------
+********Compiling Instructions********
+--------------------------------------
+
+To compile the ECECalculator, run the "make" command in the base directory of the project. No additional libraries are required besides the standard g++ compiler and the standard c++ library. The c++ standard used to compile is c++0x.
+
+make - compiles the complete project.
+make clean - cleans up object files and other temporary files created during compile.
+
+--------------------------------------
+********Executing Instructions********
+--------------------------------------
+
+The executable to run is "ECECalculator". It will be created in the base directory of the project upon running "make".
+
+Command Line Options:
+   There are three command line options available, most corresponding to an option in the Option menu.
+   
+       -h, --help
+           Starts the program to display the help menu first, rather than the main menu.
+
+       -d, --degrees
+           Set the angle units as degrees. Default is radians.
+
+       -p, --precision [NUM]
+           Set the precision of the answers displayed.
+           Takes one argument specifying the precision. 0 <= [NUM] <= 15
+           Default is the maximum required to display the results (c++ default)
+
+       -s, --scientific
+           Display answers in scientific notation. Default is standard decimal notation.
+
+       
+
+
+
