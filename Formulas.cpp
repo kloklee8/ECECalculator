@@ -14,6 +14,8 @@ struct FORMULAS
     string thevenin;
     string cap_ind;
     string rlc_circuits;
+    string ac_circuits;
+    string opAmps;
 } formulaLists;
 
 string readCategory(ifstream& file, string category)
@@ -54,6 +56,8 @@ void readFormulas()
     formulaLists.thevenin = readCategory(in, "thevenin");
     formulaLists.cap_ind = readCategory(in, "capacitors and inductors");
     formulaLists.rlc_circuits = readCategory(in, "RLC circuits");
+    formulaLists.ac_circuits = readCategory(in, "ac circuits");
+    formulaLists.opAmps = readCategory(in, "op amps");
 }
 
 void printFormulas(int category)
@@ -72,9 +76,16 @@ void printFormulas(int category)
         case 4:
             cout << formulaLists.rlc_circuits << endl;
             break;
+        case 5:
+            cout << formulaLists.ac_circuits << endl;
+            break;
+        case 6:
+            cout << formulaLists.opAmps << endl;
+            break;
         default:
             cout << formulaLists.general << formulaLists.thevenin 
-                 << formulaLists.cap_ind << formulaLists.rlc_circuits << endl;
+                 << formulaLists.cap_ind << formulaLists.rlc_circuits << 
+                 << formulaLists.ac_circuits << formulaLists.opAmps << endl;
             break;
     }
     

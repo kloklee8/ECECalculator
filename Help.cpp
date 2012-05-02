@@ -124,6 +124,7 @@ void getEquivHelp()
                      << "   .001 + .002|.003\n";
                 break;
         }
+        
         waitForUser();
         cout << endl;
     }

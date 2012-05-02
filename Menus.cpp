@@ -207,7 +207,9 @@ int formulaMenu()
          << "2. Thevenin and Norton Equivalent Circuits" << endl
          << "3. Capacitors and Inductors" << endl
          << "4. RLC Circuits" << endl
-         << "5. All" << endl
+         << "5. AC Circuits" << endl
+         << "6. Op Amps" << endl
+         << "7. All" << endl
          << "0. Main Menu" << endl;
     string choice;
     getline(cin, choice);
@@ -218,7 +220,7 @@ int formulaMenu()
         return 0;
     }
     
-    if (choice[0] < '0' || choice[0] > '5')
+    if (choice[0] < '0' || choice[0] > '7')
     {
         return -1;
     }
