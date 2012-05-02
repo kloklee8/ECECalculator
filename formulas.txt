@@ -201,8 +201,40 @@ Vc(t) = [K1 * cos[wd * t] + K2 * sin[wd * t]] * e^[-a * t] + V(final)
 
 <start ac circuits>
 
+IMPEDENCE
+~~~~~~~~~
+Z(R) = R
+
+Z(C) = -j / w * C
+
+Z(L) = j * w * L
+
+in series:  Z(eq) = Z1 + Z2 + ... + Z(n)
+
+in parallel:  Z(eq) = 1 / Z(eq) = (1 / Z1) + (1 / Z2) + ... + (1 / Z(n))
+
+
+PHASORS
+~~~~~~~
+----------------------
+Rectangular --> Polar:
+----------------------
+A + jB  --> [A^2 + B^2]^[1/2] at an angle of: atan[B / A]
+
+----------------------
+Polar --> Rectangular:
+----------------------
+A at an angle of: x  --> A * cos[x] + jA * sin[x]
+
+---------
+Division:
+---------
+[A at an angle of: x] / [B at an angle of: y]  --> [A / B] at an angle of: [A - B]
+
 <end ac circuits>
 
 <start op amps>
 
 <end op amps>
+
+
