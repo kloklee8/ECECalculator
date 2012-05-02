@@ -77,7 +77,7 @@ void convertPrefixes()
         currentModes.subMode = NONE;
         return;
     }
-    else if (choice[0] < '1' || choice[0] > '9')
+    else if (choice.size() > 1 || choice[0] < '1' || choice[0] > '9')
     {
         cout << "Invalid choice." << endl;
         return;
@@ -94,7 +94,7 @@ void convertPrefixes()
         currentModes.subMode = NONE;
         return;
     }
-    else if (choice[0] < '1' || choice[0] > '9')
+    else if (choice.size() > 1 || choice[0] < '1' || choice[0] > '9')
     {
         cout << "Invalid choice." << endl;
         return;
