@@ -126,14 +126,14 @@ void divider()
         if (currentModes.subMode == CURRENT)
         {
             divider.divideCurrent(sourceVal, r1, r2, &result1, &result2);
-            cout << "The current through the first resistor is " << result1 << " amps." << endl
-                 << "The current through the second resistor is " << result2 << " amps." << endl;
+            cout << "\nThe current through the first resistor is " << result1 << " amps." << endl
+                 << "The current through the second resistor is " << result2 << " amps.\n" << endl;
         }
         else if (currentModes.subMode == VOLTAGE)
         {
             divider.divideVoltage(sourceVal, r1, r2, &result1, &result2);
-            cout << "The voltage across the first resistor is " << result1 << " volts." <<endl
-                 << "The voltage across the second resistor is " << result2 << " volts." <<endl;
+            cout << "\nThe voltage across the first resistor is " << result1 << " volts." <<endl
+                 << "The voltage across the second resistor is " << result2 << " volts.\n" <<endl;
         }
     }
     else
