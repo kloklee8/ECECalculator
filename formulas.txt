@@ -205,7 +205,7 @@ IMPEDENCE
 ~~~~~~~~~
 Z(R) = R
 
-Z(C) = -j / w * C
+Z(C) = 1 / (j * w * C)
 
 Z(L) = j * w * L
 
@@ -224,7 +224,12 @@ A + jB  --> [A^2 + B^2]^[1/2] at an angle of: atan[B / A]
 ----------------------
 Polar --> Rectangular:
 ----------------------
-A at an angle of: x  --> A * cos[x] + jA * sin[x]
+A at an angle of x  --> A * cos[x] + jA * sin[x]
+
+----------------------------------
+PHASOR AND TIME DOMAIN CONVERSIONS
+----------------------------------
+A<x   <===>   v(t) = A*cos(wt + x)
 
 ---------
 Division:
