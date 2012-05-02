@@ -138,7 +138,7 @@ void prefixMenu()
 
 void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
 {
-    cout << "\n\nEquivalent Component help:" << endl
+    cout << "\nEquivalent Component help:" << endl
          << "   This mode is used to determine the equivalence of multiple circuit components" << endl
          << "   that are in series or parallel.  For example, you may want to know the " << endl
          << "   equivalence of five resistors that are in a complex network." << endl
@@ -169,9 +169,20 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
 
 void helpMainMenu(MAIN_MODE& helpMode)
 {
-    cout << ("1. Scientific Calculator\n2. Equivalent Component\n3. Voltage and "
-            "Current dividers\n4. Prefix Conversions\n5. Formula Sheet\n6. Options\n"
-            "7. Command line arguments\n0. Exit \"Help\"\n");
+    // TODO: Type up nice description.
+    cout << "\n\n~~~~Help Main Menu~~~~" << endl
+         << "The ECE Calculator is a dynamic tool with many uses ranging" << endl
+         << "from " << endl
+         << "from.  The following menu allows you to get help for specific ECE" << endl
+         << "Calculator modes." << endl << endl
+         << "1. Scientific Calculator" << endl
+         << "2. Equivalent Component" << endl
+         << "3. Voltage and Current dividers" << endl
+         << "4. Prefix Conversions" << endl
+         << "5. Formula Sheet" << endl
+         << "6. Options" << endl
+         << "7. Command line arguments" << endl
+         << "0. Exit \"Help\"" << endl;
     string choice;
     getline(cin, choice);
     switch(choice[0] - '0')
