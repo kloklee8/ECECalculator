@@ -27,8 +27,6 @@ SUB_MODE helpSubMode;
 void getHelp()
 {
     helpMode = MENU;
-    //getline(cin, input);
-    //(input[0] != 'm' && exp[0] != 'q')
     while (1)
     {
         switch (helpMode)
@@ -54,12 +52,14 @@ void getHelp()
             case OPTION:
                 getOptionHelp();
                 break;
-            case EXIT:
-                return;
-            default:
+            case HELP:
                 getCommandLineHelp();
+                break;
+            default:
+                return;
         }
     }
+            
 }
 
 //Return help corresponding to the menu screen and how to use the entire 
@@ -76,6 +76,7 @@ void getMenuHelp()
 //Return help corresponding to the scientific calculator mode.
 void getSciHelp()
 {
+    // TODO: Type up nice description.
     cout << "Scientific Calculator Help:";
     
     waitForUser();
@@ -87,10 +88,12 @@ void getEquivHelp()
 {
     helpEqComponentSubMenu(helpMode, helpSubMode);
                 
+    
     if (helpSubMode == NONE)
         return;
     else
     {
+        cout << endl;
         switch (helpSubMode) 
         {
             case RESISTANCE:
@@ -141,8 +144,7 @@ void getDividerHelp()
          << "   then prompt you to enter the source value and the values " << endl
          << "   of the two resistors. The division across both resistors is displayed." << endl << endl
          << "   Note: The values of the sources must be in units of Volts or Amps," << endl
-         << "   and the value of the resistors must be in Ohms." << endl
-         << "   To exit the divider, either enter 'm' to return to the main menu or 'q' to quit the program." << endl;
+         << "   and the value of the resistors must be in Ohms." << endl;
          
     waitForUser();
     helpMode = MENU;
@@ -156,8 +158,7 @@ void getConvHelp()
     prefixMenu();
     cout << "   When entering this mode, you will be prompted to enter the unit" << endl
          << "   (with the correspoding menu #) to convert from, the unit to convert to," << endl
-         << "   and the value to convert." << endl
-         << "   To exit the prefix converter, either enter 'm' to return to the main menu or 'q' to quit the program." << endl;
+         << "   and the value to convert." << endl;
          
     waitForUser();
     helpMode = MENU;

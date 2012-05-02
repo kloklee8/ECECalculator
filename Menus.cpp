@@ -143,7 +143,7 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
          << "   that are in series or parallel.  For example, you may want to know the " << endl
          << "   equivalence of five resistors that are in a complex network." << endl
          << "   Operators include \'+\' for series and \'|\' for parallel." << endl;
-    cout << "       1. Resistance\n       2. Capacitance\n       3. Inductance\n       0. Return to last menu\n";
+    cout << "       1. Resistance\n       2. Capacitance\n       3. Inductance\n       0. Return to Main menu\n";
     string choice;
     getline(cin, choice);
     switch(choice[0] - '0')
@@ -194,9 +194,11 @@ void helpMainMenu(MAIN_MODE& helpMode)
         case 6:
             helpMode = OPTION;
             break;
+        case 7:
+            helpMode = HELP;
+            break;
         case 0:
             helpMode = EXIT;
-    
     }    
 }
 

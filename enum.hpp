@@ -22,6 +22,7 @@ enum MAIN_MODE
     CONVERSION,
     FORMULA,
     OPTION,
+    HELP,
     EXIT
 };
 
