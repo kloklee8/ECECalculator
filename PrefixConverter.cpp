@@ -10,6 +10,9 @@ using std::cin;
 using std::endl;
 using std::string;
 
+// extern because declared in main. In order to keep main short, this set of
+// code, which all perform prefix conversion tasks, was moved into its own files,
+// but still needs access to the current program's modes and options.
 extern MODES currentModes;
 extern OPTIONS currentOptions;
 

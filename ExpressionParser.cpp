@@ -17,6 +17,8 @@ ExpressionParser::ExpressionParser(string exp_infix)
     prevAnswer = "0";
 }
 
+// this is a modified version of the "Shunting Yard Algorithm", aka "Diijkstra's Algorithm"
+// in particular, it included the implementation of functions in addition to operators.
 string ExpressionParser::convertToPostfix()
 {
     infix = convertFuncsToChar(infix);

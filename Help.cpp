@@ -205,7 +205,7 @@ void getCommandLineHelp()
          << "       -s, --scientific" << endl
          << "           Display answers in scientific notation. Default is standard decimal notation." << endl << endl
          << "       -h, --help" << endl
-         << "           Starts the program to display the help menu first." << endl;
+         << "           Starts the program to display the help menu first, rather than the main menu" << endl;
     
     waitForUser();
     helpMode = MENU;

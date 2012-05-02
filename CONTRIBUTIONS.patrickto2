@@ -1,0 +1,15 @@
+Patrick To
+ECE 2524 Final Project: ECECalculator
+
+* Design: Each group member contributed during the design process. The design process included deciding what features to implement, how to implement these features (such as language, modularity, class designs, etc), and how the tasks will be divided among each group member.
+
+* My individual contributions:
+    - Implemented the overall structure of main.
+    - Implemented the ExpressionParser, which is a general parser that is extended by other functions in the calculator.
+    - Implemented the scientific calculator.
+    - Implemented the prefix converter.
+    - Added categories for formulas, so users can display a specific category rather than the whole formulas.txt file.
+    - Added user-configurable options for certain calculator features via the Options menu.
+    - Added support for command line arguments.
+    - Monitored for and Fixed any conflicts resulted from multiple commits from different group members. Ensured each individual parts combine as expected.
+    - Regular clean-up of code: modularized code and long functions, removed unnecessary repeated code, separated related code into its own files, etc.

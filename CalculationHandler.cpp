@@ -16,6 +16,9 @@ using std::fixed;
 using std::scientific;
 using std::getline;
 
+// extern because declared in main. In order to keep main short, this set of
+// code, which are in the similar category, was moved into its own files,
+// but still needs access to the current program's modes and options.
 extern MODES currentModes;
 extern OPTIONS currentOptions;
 
