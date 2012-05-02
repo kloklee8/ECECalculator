@@ -84,7 +84,7 @@ void printFormulas(int category)
             break;
         default:
             cout << formulaLists.general << formulaLists.thevenin 
-                 << formulaLists.cap_ind << formulaLists.rlc_circuits << 
+                 << formulaLists.cap_ind << formulaLists.rlc_circuits
                  << formulaLists.ac_circuits << formulaLists.opAmps << endl;
             break;
     }
