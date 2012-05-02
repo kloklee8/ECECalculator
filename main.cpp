@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
                 break;
         }
     }
-    
+    cout << "Exiting ECECalculator..." << endl << endl;
     return 0;
 }
 

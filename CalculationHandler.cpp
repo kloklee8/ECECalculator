@@ -32,11 +32,11 @@ void sci_calculator(SciCalcParser& calcParser)
     {
         calcParser.setExpression(exp);
         string result = calcParser.evaluateExpression();
-        cout << atof(result.c_str()) << endl;
+        cout << "= " << atof(result.c_str()) << endl;
     }
     else
     {
-        cout << endl;
+        cout << endl << "Exiting Scientific Calculator..." << endl << endl;
         
         if (exp[0] == 'm' || exp.find("menu") != string::npos)
         {
@@ -68,7 +68,7 @@ void equivalent_component(EquivComponentParser& eqComponentParser)
         eqComponentParser.setMode(currentModes.subMode);
         eqComponentParser.setExpression(exp);
         string result = eqComponentParser.evaluateExpression();
-        cout << atof(result.c_str());
+        cout << "= " << atof(result.c_str());
         
         switch (currentModes.subMode)
         {
@@ -85,7 +85,7 @@ void equivalent_component(EquivComponentParser& eqComponentParser)
     }
     else
     {
-        cout << endl;
+        cout << endl << "Exiting Equivalent Components Calculator..." << endl << endl;
         
         if (exp[0] == 'm' || exp.find("menu") != string::npos)
         {
@@ -141,7 +141,7 @@ void divider()
     }
     else
     {
-        cout << endl;
+        cout << endl << "Exiting Voltage and Current Divider..." << endl << endl;
         
         if (exp[0] == 'm' || exp.find("menu") != string::npos)
         {
@@ -220,11 +220,12 @@ void options(SciCalcParser& calcParser)
                 break;
             }
             case '0':
+                cout << "Exiting Options..." << endl << endl;
                 currentModes.mainMode = MENU;
                 currentModes.subMode = NONE;
                 break;
             default:
-                cout << "Invalid choice" << endl;
+                cout << "Invalid choice" << endl << endl;
                 break;                
         }
         

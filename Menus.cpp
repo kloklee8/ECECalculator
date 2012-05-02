@@ -17,7 +17,7 @@ extern OPTIONS currentOptions;
 void menu()
 {
     string choice; // using string instead of int to prevent whitespace issues with other parts of the program
-    cout << "1. Scientific Calculator" << endl
+    cout << "\n1. Scientific Calculator" << endl
          << "2. Circuit Component Equivalence" << endl
          << "3. Current and Voltage Dividers" << endl
          << "4. Convert Between Unit Prefixes" << endl
@@ -33,29 +33,36 @@ void menu()
         case '1': 
             currentModes.mainMode = SCI_CALC;
             currentModes.subMode = NONE;
-            cout << "Enter an expression to calculate. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
+            cout << "Entering Scientific Calculator..." << endl << endl
+                 << "Enter expressions to calculate. Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
             break;
         case '2':
+            cout << "Entering Equivalent Components Calculator..." << endl << endl;
 			currentModes.mainMode = EQ_COMPONENT;
 			eqComponentSubmenu();
 			break;
 		case '3':
+		    cout << "Entering Voltage and Current Divider..." << endl << endl;
 	        currentModes.mainMode = DIVIDER;
 	        dividerSubmenu();
 	        break;
 	    case '4':
+	        cout << "Entering Prefix Converter..." << endl << endl;
 	        currentModes.mainMode = CONVERSION;
 	        currentModes.subMode = NONE;
 	        prefixMenu();
 	        break;
 	    case '5':
+	        cout << "Entering Formulas..." << endl << endl;
 	        currentModes.mainMode = FORMULA;
 	        currentModes.subMode = NONE;
 	        break;
 	    case '9':
+	        cout << "Entering Help..." << endl << endl;
             getHelp();
             break;
         case '0':
+            cout << "Entering Options..." << endl << endl;
             currentModes.mainMode = OPTION;
             currentModes.subMode = NONE;
             break;
@@ -63,14 +70,14 @@ void menu()
             currentModes.mainMode = EXIT;
             break;
         default:
-            cout << "Error: Invalid choice\n" << endl;
+            cout << "Error: Invalid choice\n" << endl << endl;
     }
 }
 
 void eqComponentSubmenu()
 {
 	string subChoice; // using string instead of int to prevent whitespace issues with other parts of the program
-    cout << "What would you like to find the equivalence of?." <<  endl
+    cout << "\nWhat would you like to find the equivalence of?." <<  endl
 	    << "1. Resistance" << endl
 	    << "2. Capacitance" << endl
 	    << "3. Inductance" << endl
@@ -95,13 +102,14 @@ void eqComponentSubmenu()
         default:
 	        currentModes.subMode = NONE;
     }
-    cout << "Enter an equivalent expression to calculate.  Use '+' for series and '|' for parallel Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
+    cout << "Enter an equivalent expression to calculate.  Use '+' for series and '|' for parallel." << endl
+         << "Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
 }
 
 void dividerSubmenu()
 {
     string subChoice;
-    cout << "What would you like to divide?" << endl
+    cout << "\nWhat would you like to divide?" << endl
          << "1. Current through parallel resistors" << endl
          << "2. Voltage across resistors in series" << endl
          << "0. Main Menu" << endl;
@@ -127,7 +135,7 @@ void dividerSubmenu()
 
 void prefixMenu()
 {
-    cout << "   1. Tera [T] (10^12)" << endl
+    cout << "   \n1. Tera [T] (10^12)" << endl
          << "   2. Giga [G] (10^9)" << endl
          << "   3. Mega [M] (10^6)" << endl
          << "   4. kilo [k] (10^3)" << endl
@@ -147,6 +155,7 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
          << "   equivalence of five resistors that are in a complex network." << endl
          << "   Operators include \'+\' for series and \'|\' for parallel." << endl;
     cout << "       1. Resistance\n       2. Capacitance\n       3. Inductance\n       0. Return to Main menu\n";
+    
     string choice;
     getline(cin, choice);
     switch(choice[0] - '0')
@@ -165,9 +174,6 @@ void helpEqComponentSubMenu(MAIN_MODE& helpMode, SUB_MODE& helpSubMode)
             helpSubMode = NONE;
             break;
     }
-    
-    
-    
 }
 
 void helpMainMenu(MAIN_MODE& helpMode)
@@ -219,7 +225,7 @@ void helpMainMenu(MAIN_MODE& helpMode)
 
 int formulaMenu()
 {
-    cout << "Select a category of formulas:" << endl
+    cout << "\nSelect a category of formulas:" << endl
          << "1. Basic Circuit Laws" << endl
          << "2. Thevenin and Norton Equivalent Circuits" << endl
          << "3. Capacitors and Inductors" << endl
@@ -233,6 +239,7 @@ int formulaMenu()
     
     if (choice[0] == '0')
     {
+        cout << endl << "Exiting Formulas..." << endl << endl;
         currentModes.mainMode = MENU;
         return 0;
     }
@@ -250,5 +257,6 @@ void waitForUser()
     cout << "Enter any key to continue. ";
     string garbage;
     getline(cin, garbage);
+    cout << endl;
 }
 

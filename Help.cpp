@@ -56,7 +56,7 @@ void getHelp()
                 getCommandLineHelp();
                 break;
             default:
-                cout << "\nExited help, returning to ECE Calculator...\n\n\n";
+                cout << "\nExiting help, returning to ECE Calculator...\n\n";
                 return;
         }
     }

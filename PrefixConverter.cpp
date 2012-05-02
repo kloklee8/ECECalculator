@@ -76,6 +76,7 @@ void convertPrefixes()
     
     if (choice[0] == '0')
     {
+        cout << endl << "Exiting Prefix Converter..." << endl << endl;
         currentModes.mainMode = MENU;
         currentModes.subMode = NONE;
         return;
