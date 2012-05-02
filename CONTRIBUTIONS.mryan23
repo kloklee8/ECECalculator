@@ -1,0 +1,18 @@
+Mark Ryan McNamee
+
+My contributions to the ECE Calculator were:
+
+1. Assisting in desiging the calculator
+    a. Attended meetings to discuss what should be included
+    b. Brainstorm ideas on class heirarchy
+    
+2. Dividers Section
+    a. Allowed users to use standard "voltage divider" and "current divider" formulas
+    
+3. Code testing and clean up
+    a. Ran through the program at several stages to determine what needed to be fixed/changed and implemented many of those changes
+    b. Seached for any typos
+    c. Fixed warnings that were generated during compilation
+    
+
+I mistakenly forked the repo rather than cloning so my code contributions do not appear in the commit history.  My code was merged in by patrickto2 so it does not appear in my username. 
