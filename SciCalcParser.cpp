@@ -22,7 +22,7 @@ SciCalcParser::SciCalcParser(string infix) : ExpressionParser(infix)
 bool SciCalcParser::isOperand(const char op)
 {
     // allows . for floating points, and p is the constant PI.
-    return (((op >= '0') && (op <= '9')) || op == '.' || op == 'p');
+    return (((op >= '0') && (op <= '9')) || op == '.' || op == 'p' || op == '-');
 }
 
 bool SciCalcParser::isOperator(const char op)
@@ -100,6 +100,10 @@ exp_element SciCalcParser::executeOperator(const exp_element op, const exp_eleme
     {
         left = PI;
     }
+    else if (leftOp.data == "-p")
+    {
+        left = -PI;
+    }
     else
     {
         left = atof(leftOp.data.c_str());
@@ -107,6 +111,10 @@ exp_element SciCalcParser::executeOperator(const exp_element op, const exp_eleme
     if (rightOp.data == "p")
     {
         right = PI;
+    }
+    else if (rightOp.data == "-p")
+    {
+        right = -PI;
     }
     else
     {
@@ -158,6 +166,10 @@ exp_element SciCalcParser::executeFunction(const exp_element funct, const exp_el
     if (foperand.data == "p")
     {
         foper = PI;
+    }
+    else if (foperand.data == "-p")
+    {
+        foper = -PI;
     }
     else
     {

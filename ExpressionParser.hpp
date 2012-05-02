@@ -50,7 +50,7 @@ class ExpressionParser
         void replaceWithPrevAnswer();
         void emptyPostfixExpressionQueue();
         
-        void processOperand(const char current, string::iterator it, string& curBuffer);
+        void processOperand(const char current, string::iterator it, string& curBuffer, stack<exp_element>& operators);
         void processOperator(const char current, stack<exp_element>& operators);
         void processFunction(const char current, stack<exp_element>& operators);
         void processParen(const char current, stack<exp_element>& operators);

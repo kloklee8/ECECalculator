@@ -1,6 +1,9 @@
 #include <cstdlib>
+#include <string>
 #include "ExpressionParser.hpp"
 #include "Exceptions.hpp"
+
+using std::string;
 
 ExpressionParser::ExpressionParser()
 {
@@ -32,7 +35,7 @@ string ExpressionParser::convertToPostfix()
         {
             if (isOperand(current))
             {
-                processOperand(current, it, operandBuffer);
+                processOperand(current, it, operandBuffer, operators);
             }
             else if (isOperator(current))
             {
@@ -157,17 +160,28 @@ exp_element ExpressionParser::newElement(const DATA_TYPE type, const string data
     return newElement;
 }
 
-void ExpressionParser::processOperand(const char current, string::iterator it, string& curBuffer)
+void ExpressionParser::processOperand(const char current, string::iterator it, string& curBuffer, stack<exp_element>& operators)
 {
-    curBuffer += current;
-    string::iterator nextIt = it;
-    nextIt++;
-
-    if ((nextIt == infix.end()) || (!isOperand(*(nextIt))))
+    if (current == '-' && curBuffer != "")
     {
         exp_element newOperand = newElement(OPERAND, curBuffer);
         postfixExpression.push_back(newOperand);
         curBuffer = "";
+        
+        processOperator(current, operators);
+    }
+    else
+    {
+        string::iterator nextIt = it;
+        curBuffer += current;
+        nextIt++;
+        
+        if ((nextIt == infix.end()) || (!isOperand(*(nextIt))))
+        {
+            exp_element newOperand = newElement(OPERAND, curBuffer);
+            postfixExpression.push_back(newOperand);
+            curBuffer = "";
+        }
     }
 }
 
