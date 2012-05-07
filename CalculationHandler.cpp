@@ -101,7 +101,7 @@ void equivalent_component(EquivComponentParser& eqComponentParser)
 
 void divider()
 {
-    cout << "Enter the value of the source in " << ((currentModes.subMode == CURRENT) ? "Amps." : "Volts.")
+    cout << "Enter the value of the source in " << ((currentModes.subMode == CURRENT) ? "Amps. " : "Volts. ")
          << "Enter \"m\" or \"q\" to return to the main menu or quit." << endl;
     string exp;
     getline(cin, exp);
